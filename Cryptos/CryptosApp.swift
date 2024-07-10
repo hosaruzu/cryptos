@@ -11,7 +11,9 @@ import SwiftUI
 struct CryptosApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                HomeView()
+            }
         }
     }
 }

@@ -17,4 +17,5 @@ struct ColorTheme {
     let green = Color.crGreen
     let red = Color.crRed
     let secondaryText = Color.crSecondaryText
+    let light = Color.crWhite
 }
