@@ -9,6 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
 
+    // MARK: - View model
+    @StateObject private var viewModel = HomeViewModel()
+
     // MARK: - State
 
     @State private var showPortfolio: Bool = false
@@ -16,19 +19,43 @@ struct HomeView: View {
     // MARK: - Body
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             Color.theme.background
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
                 HomeHeader(isChanged: $showPortfolio)
-                Spacer(minLength: 0)
-                List {
-                    CoinRowView(coin: Coin.mock, showHoldingsColumn: true)
+
+                if viewModel.allCoins.isEmpty {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                } else {
+                    listHeaderView
+                    if !showPortfolio {
+                        ListView(coins: viewModel.allCoins)
+                            .transition(.move(edge: .leading))
+                    } else {
+                        ListView(coins: viewModel.portfolioCoins, showHolidngsColumn: true)
+                            .transition(.move(edge: .trailing))
+                    }
                 }
-                .listStyle(.inset)
             }
         }
+    }
+}
+
+extension HomeView {
+    private var listHeaderView: some View {
+        HStack {
+            Text("Coin")
+            Spacer()
+            Text(showPortfolio ? "Holdings" : "")
+            Text("Price")
+                .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+        }
+        .font(.caption)
+        .foregroundStyle(Color.theme.secondaryText)
+        .padding(.horizontal)
     }
 }
 

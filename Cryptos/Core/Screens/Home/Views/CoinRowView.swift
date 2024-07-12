@@ -85,5 +85,5 @@ extension CoinRowView {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    CoinRowView(coin: Coin.mock, showHoldingsColumn: true)
+    CoinRowView(coin: .mock, showHoldingsColumn: true)
 }
