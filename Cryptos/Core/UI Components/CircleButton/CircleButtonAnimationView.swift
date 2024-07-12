@@ -17,10 +17,6 @@ struct CircleButtonAnimationView: View {
             .stroke(Color.theme.accent, style: .init(lineWidth: 5.0))
             .opacity(animate ? 0.0 : 1.0)
             .animation(animate ? .easeOut(duration: 1.0) : .none, value: animate)
-            .onAppear(perform: {
-                animate.toggle()
-            })
-
     }
 }
 

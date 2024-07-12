@@ -20,9 +20,13 @@ struct HomeView: View {
             Color.theme.background
                 .ignoresSafeArea()
 
-            VStack {
+            VStack(spacing: 0) {
                 HomeHeader(isChanged: $showPortfolio)
                 Spacer(minLength: 0)
+                List {
+                    CoinRowView(coin: Coin.mock, showHoldingsColumn: true)
+                }
+                .listStyle(.inset)
             }
         }
     }
