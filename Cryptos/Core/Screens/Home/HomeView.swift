@@ -54,7 +54,7 @@ struct HomeView: View {
                         if havePortfolioCoins() {
                             listHeaderView
                             ListView(coins: viewModel.portfolioCoins, showHolidngsColumn: true)
-                                .transition(.move(edge: .trailing).animation(.interactiveSpring))
+                                .transition(.move(edge: .trailing))
                         } else {
                             emptyPortfolioView
                         }
