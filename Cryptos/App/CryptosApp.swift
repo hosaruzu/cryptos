@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct CryptosApp: App {
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                HomeView(viewModel: HomeViewModel())
+            }
         }
     }
 }
