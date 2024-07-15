@@ -26,11 +26,13 @@ struct HomeView: View {
 
             VStack(spacing: 0) {
                 HomeHeader(isChanged: $atPortfolio)
-
+                
                 if isFirstLoadingAtPricesPage() {
                     ProgressView()
                         .progressViewStyle(.circular)
                 } else {
+                    HomeStatisticsView(statistics: viewModel.statistics, atPortfolio: $atPortfolio)
+
                     SearchBarView(searchText: $viewModel.searchText)
 
                     if !atPortfolio {
