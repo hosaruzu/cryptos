@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct Coin: Decodable, Identifiable {
+struct Coin: Decodable, Identifiable, Equatable {
+    static func == (lhs: Coin, rhs: Coin) -> Bool {
+        lhs.id == rhs.id
+    }
+
     let id: String
     let symbol: String
     let name: String
@@ -15,16 +19,16 @@ struct Coin: Decodable, Identifiable {
     let currentPrice: Double
     let marketCap: Int
     let marketCapRank: Int
-    let fullyDilutedValuation: Int
-    let totalVolume: Int
-    let high24H: Double
-    let low24H: Double
+    let fullyDilutedValuation: Int?
+    let totalVolume: Double
+    let high24H: Double?
+    let low24H: Double?
     let priceChange24H: Double
     let priceChangePercentage24H: Double
     let marketCapChange24H: Double
     let marketCapChangePercentage24H: Double
     let circulatingSupply: Double
-    let totalSupply: Double
+    let totalSupply: Double?
     let maxSupply: Double?
     let ath, athChangePercentage: Double
     let athDate: String

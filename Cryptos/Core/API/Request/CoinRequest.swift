@@ -8,24 +8,23 @@
 import Foundation
 
 enum CoinRequest: RequestProtocol {
-    case getCoins(page: Int = 1)
+    case getCoins(page: Int)
 
     var path: String {
         "/api/v3/coins/markets"
     }
 
-    var queryParams: [String : String?] {
+    var queryParams: [String: String?] {
 
         switch self {
         case .getCoins(let page):
-            var params = [
+            [
                 "vs_currency": "usd",
                 "per_page": "20",
-                "page": "\(page)",
+                "page": String(page),
                 "sparkline": "\(true)",
                 "price_change_percentage": "24h"
             ]
-            return params
         }
     }
 }

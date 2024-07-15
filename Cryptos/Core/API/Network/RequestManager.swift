@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol RequestManagerProtocol {
     var apiManager: APIManagerProtocol { get }
