@@ -23,7 +23,9 @@ struct CoinRowView: View {
                 }
 
                 trailingColumn
-                    .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+                    .frame(
+                        width: UIScreen.main.bounds.width / 3.5,
+                        alignment: .trailing)
             }
             .font(.subheadline)
     }
@@ -36,21 +38,9 @@ extension CoinRowView {
                 .font(.caption)
                 .foregroundStyle(Color.theme.primaryText)
                 .frame(minWidth: 30)
-            AsyncImage(url: URL(string: coin.image)) { result in
-                if let image = result.image {
-                    image
-                        .resizable()
-                        .scaledToFill()
-                } else if result.error != nil {
-                    Image(systemName: "xmark.circle.fill")
-                        .resizable()
-                        .foregroundStyle(Color.theme.secondaryText)
-                } else {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                }
-            }
-            .frame(width: 30, height: 30)
+
+            ImageView(urlString: coin.image)
+
             Text(coin.symbol.uppercased())
                 .font(.headline)
                 .padding(.leading, 6)
