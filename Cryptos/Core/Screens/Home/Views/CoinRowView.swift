@@ -74,6 +74,6 @@ extension CoinRowView {
     }
 }
 
-#Preview(traits: .sizeThatFitsLayout) {
+#Preview() {
     CoinRowView(coin: .mock, showHoldingsColumn: true)
 }

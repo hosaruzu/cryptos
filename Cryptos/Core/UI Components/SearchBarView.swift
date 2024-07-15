@@ -54,11 +54,9 @@ private extension SearchBarView {
             if searchText.isEmpty {
                 Text("Search by name or symbol...")
                     .foregroundStyle(Color.theme.secondaryText)
-                    .fontWeight(.regular)
             }
             TextField("", text: $searchText)
                 .foregroundStyle(Color.theme.primaryText)
-                .fontWeight(.medium)
                 .focused($isFocused)
                 .autocorrectionDisabled()
                 .keyboardType(.asciiCapable)

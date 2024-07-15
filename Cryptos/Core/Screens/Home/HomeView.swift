@@ -118,7 +118,7 @@ private extension HomeView {
 // MARK: - Preview
 
 #Preview {
-    NavigationStack {
+    NavigationView {
         HomeView(viewModel: HomeViewModel())
     }
 }

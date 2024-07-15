@@ -12,7 +12,7 @@ struct CryptosApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
+            NavigationView {
                 HomeView(viewModel: HomeViewModel())
             }
         }
