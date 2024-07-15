@@ -13,6 +13,7 @@ final class HomeViewModel: ObservableObject {
     @Published var isLoading: Bool
     @Published var hasMoreCoins = true
 
+    @Published var statistics: [Statistic] = Statistic.mock
     @Published var allCoins: [Coin] = []
     @Published var filterCoins: [Coin] = []
     @Published var portfolioCoins: [Coin] = []

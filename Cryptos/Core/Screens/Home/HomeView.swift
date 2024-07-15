@@ -26,11 +26,13 @@ struct HomeView: View {
 
             VStack(spacing: 0) {
                 HomeHeader(isChanged: $atPortfolio)
-
+                
                 if isFirstLoadingAtPricesPage() {
                     ProgressView()
                         .progressViewStyle(.circular)
                 } else {
+                    HomeStatisticsView(statistics: viewModel.statistics, atPortfolio: $atPortfolio)
+
                     SearchBarView(searchText: $viewModel.searchText)
 
                     if !atPortfolio {
@@ -52,7 +54,7 @@ struct HomeView: View {
                         if havePortfolioCoins() {
                             listHeaderView
                             ListView(coins: viewModel.portfolioCoins, showHolidngsColumn: true)
-                                .transition(.move(edge: .trailing))
+                                .transition(.move(edge: .trailing).animation(.interactiveSpring))
                         } else {
                             emptyPortfolioView
                         }
