@@ -94,7 +94,7 @@ private extension HomeView {
     }
 
     private var emptyPortfolioView: some View {
-        Text("Your portfolio is empty")
+        Text("Portfolio is empty")
             .font(.subheadline)
             .bold()
             .foregroundStyle(Color.theme.secondaryText)
