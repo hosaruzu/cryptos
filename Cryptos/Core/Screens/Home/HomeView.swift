@@ -31,12 +31,14 @@ struct HomeView: View {
                     ProgressView()
                         .progressViewStyle(.circular)
                 } else {
+                    SearchBarView(searchText: $viewModel.searchText)
+
                     if !atPortfolio {
                         listHeaderView
                         ListView(coins: viewModel.allCoins) {
                             loaderView
                             .task {
-                                await viewModel.fetchCoins()
+                                await viewModel.fetchMoreCoins()
                             }
                         }
                         .transition(.move(edge: .leading))

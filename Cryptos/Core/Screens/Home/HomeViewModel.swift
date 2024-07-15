@@ -16,6 +16,7 @@ final class HomeViewModel: ObservableObject {
     @Published var allCoins: [Coin] = []
     @Published var portfolioCoins: [Coin] = []
     @Published var errorMessage: String = ""
+    @Published var searchText: String = ""
 
     private(set) var page: Int = 1
 
@@ -30,9 +31,7 @@ final class HomeViewModel: ObservableObject {
         do {
             let coins = try await service.fetchCoins(page: page)
             allCoins.append(contentsOf: coins)
-            if !coins.isEmpty {
-                self.page += 1
-            }
+            hasMoreCoins = !coins.isEmpty
         } catch {
             print(error)
             errorMessage = error.localizedDescription
@@ -40,9 +39,12 @@ final class HomeViewModel: ObservableObject {
         isLoading = false
     }
 
-//    func fetchMoreCoins() async {
-//        page += 1
-//        print("more coins fetcing")
-//        await fetchCoins()
-//    }
+    func fetchMoreCoins() async {
+        page += 1
+        await fetchCoins()
+    }
+
+    private func search(with text: String) {
+
+    }
 }
