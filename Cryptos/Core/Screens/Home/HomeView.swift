@@ -35,10 +35,16 @@ struct HomeView: View {
 
                     if !atPortfolio {
                         listHeaderView
-                        ListView(coins: viewModel.allCoins) {
-                            loaderView
-                            .task {
-                                await viewModel.fetchMoreCoins()
+                        ListView(
+                            coins: viewModel.inSearchMode
+                            ? viewModel.filterCoins
+                            : viewModel.allCoins
+                        ) {
+                            if !viewModel.inSearchMode {
+                                loaderView
+                                    .task {
+                                        await viewModel.fetchMoreCoins()
+                                    }
                             }
                         }
                         .transition(.move(edge: .leading))
@@ -79,13 +85,6 @@ private extension HomeView {
     }
 
     private var loaderView: some View {
-//        HStack {
-//            Spacer()
-//            ProgressView()
-//                .id(UUID())
-//                .progressViewStyle(.circular)
-//            Spacer()
-//        }
         HStack {
             ProgressView()
                 .id(UUID())

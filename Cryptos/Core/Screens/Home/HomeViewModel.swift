@@ -14,9 +14,16 @@ final class HomeViewModel: ObservableObject {
     @Published var hasMoreCoins = true
 
     @Published var allCoins: [Coin] = []
+    @Published var filterCoins: [Coin] = []
     @Published var portfolioCoins: [Coin] = []
     @Published var errorMessage: String = ""
-    @Published var searchText: String = ""
+    @Published var searchText: String = "" {
+        didSet {
+            inSearchMode = !searchText.isEmpty
+            performLocalSearch()
+        }
+    }
+    @Published var inSearchMode = false
 
     private(set) var page: Int = 1
 
@@ -44,7 +51,15 @@ final class HomeViewModel: ObservableObject {
         await fetchCoins()
     }
 
-    private func search(with text: String) {
-
+    private func performLocalSearch() {
+        guard !searchText.isEmpty else {
+            filterCoins = allCoins
+            return
+        }
+        filterCoins = allCoins.filter { coin in
+            return coin.name.lowercased().contains(searchText.lowercased())
+            || coin.symbol.lowercased().contains(searchText.lowercased())
+            || coin.id.lowercased().contains(searchText.lowercased())
+        }
     }
 }
