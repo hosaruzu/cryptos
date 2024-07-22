@@ -92,4 +92,9 @@ final class HomeViewModel: ObservableObject {
             percentageChange: 1)
         return [marketCap, volume, btcDominance, portfolio]
     }
+
+    func saveToPortfolio(_ coin: Coin, holdings: Double) {
+        let coin = coin.updateHoldings(amount: holdings)
+        portfolioCoins.append(coin)
+    }
 }

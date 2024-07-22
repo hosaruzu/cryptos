@@ -22,7 +22,7 @@ final class APIManager: APIManagerProtocol {
         let (data, response) = try await urlSession.data(for: data.request())
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200
-        else { throw NetworkError.invalidServerResponse }
+        else { throw NetworkError.invalidServerResponse((response as? HTTPURLResponse)?.statusCode ?? 99) }
         return data
     }
 }
