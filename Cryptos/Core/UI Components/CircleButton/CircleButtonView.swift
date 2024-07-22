@@ -13,9 +13,9 @@ struct CircleButtonView: View {
 
     var body: some View {
         Image(systemName: iconName)
-            .font(.headline)
+            .font(.title)
             .foregroundStyle(Color.theme.accent)
-            .frame(width: 20, height: 20)
+            .frame(width: 30, height: 30)
             .scaledToFit()
             .padding()
     }
