@@ -13,16 +13,10 @@ struct CircleButtonView: View {
 
     var body: some View {
         Image(systemName: iconName)
-            .font(.headline)
-            .foregroundStyle(Color.theme.light)
-            .frame(width: 50, height: 50)
-            .background(
-                Circle()
-                    .foregroundStyle(Color.theme.accent)
-            )
-            .shadow(
-                color: Color.theme.accent.opacity(0.5),
-                radius: 10)
+            .font(.title)
+            .foregroundStyle(Color.theme.accent)
+            .frame(width: 30, height: 30)
+            .scaledToFit()
             .padding()
     }
 }
@@ -33,7 +27,7 @@ struct CircleButtonView: View {
             .padding()
 
         CircleButtonView(iconName: "plus")
-            .preferredColorScheme(.dark)
+//            .preferredColorScheme(.dark)
             .padding()
     }
 }

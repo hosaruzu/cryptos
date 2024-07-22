@@ -23,11 +23,10 @@ struct SearchBarView: View {
             }
             .font(.headline)
             .padding()
+            .cornerRadius(20)
             .background(
-                RoundedRectangle(cornerRadius: 25)
-                    .fill(Color.theme.background)
-                    .shadow(color: Color.theme.accent.opacity(0.2),
-                            radius: 20)
+                RoundedRectangle(cornerRadius: 8)
+                    .strokeBorder(Color.theme.accent, lineWidth: 2)
                     .animation(.easeOut(duration: 0.3), value: isFocused)
             )
 

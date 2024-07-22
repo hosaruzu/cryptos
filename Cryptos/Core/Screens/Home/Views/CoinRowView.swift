@@ -36,7 +36,7 @@ extension CoinRowView {
         HStack(spacing: 0) {
             Text("\(coin.marketCapRank)")
                 .font(.caption)
-                .foregroundStyle(Color.theme.primaryText)
+                .foregroundStyle(Color.theme.accent)
                 .frame(minWidth: 30)
 
             ImageView(urlString: coin.image)

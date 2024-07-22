@@ -13,18 +13,20 @@ struct HomeHeader: View {
 
     var body: some View {
         HStack {
-            CircleButtonView(iconName: isChanged ? "plus" : "info")
+            CircleButtonView(iconName: isChanged ? "plus.square" : "info.square")
                 .animation(.none, value: isChanged)
                 .background(
                     CircleButtonAnimationView(animate: $isChanged)
                 )
+            CircleButtonView(iconName: "arrow.clockwise.square")
             Spacer(minLength: 0)
             Text(isChanged ? "Portfolio" : "Prices")
                 .animation(.none, value: isChanged)
                 .font(.headline.bold())
                 .foregroundStyle(Color.theme.accent)
             Spacer(minLength: 0)
-            CircleButtonView(iconName: "chevron.right")
+            Spacer(minLength: 0)
+            CircleButtonView(iconName: "chevron.right.square")
                 .rotationEffect(Angle(degrees: isChanged ? UIConstants.rotationValue : 0))
                 .onTapGesture {
                     withAnimation(.spring()) {
@@ -37,7 +39,7 @@ struct HomeHeader: View {
 }
 
 #Preview {
-    HomeHeader(isChanged: .constant(true))
+    HomeHeader(isChanged: .constant(false))
 }
 
 private enum UIConstants {
