@@ -35,4 +35,37 @@ extension Double {
     var asTruncatedPercentString: String {
         return asTruncatedNumberString + "%"
     }
+
+    var formattedWithAbbreviations: String {
+        let num = abs(Double(self))
+        let sign = self < 0 ? "-" : ""
+        switch num {
+        case 1_000_000_000_000...:
+            let formatted = num / 1_000_000_000_000
+            let stringFormatted = formatted.asTruncatedNumberString
+            return "\(sign)\(stringFormatted)Tr"
+
+        case 1_000_000_000...:
+            let formatted = num / 1_000_000_000
+            let stringFormatted = formatted.asTruncatedNumberString
+            return "\(sign)\(stringFormatted)Bn"
+
+        case 1_000_000...:
+            let formatted = num / 1_000_000
+            let stringFormatted = formatted.asTruncatedNumberString
+            return "\(sign)\(stringFormatted)M"
+
+        case 1_000...:
+            let formatted = num / 1_000
+            let stringFormatted = formatted.asTruncatedNumberString
+            return "\(sign)\(stringFormatted)K"
+
+        case 0...:
+            return self.asTruncatedNumberString
+
+        default:
+            return "\(sign)\(self)"
+        }
+
+    }
 }
