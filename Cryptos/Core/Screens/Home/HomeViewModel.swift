@@ -28,7 +28,8 @@ final class HomeViewModel: ObservableObject {
 
     private(set) var page: Int = 1
 
-    private let service = FetchCoinsService()
+    private let coinService = FetchCoinsService()
+    private let marketDataService = FetchMarketDataService()
 
     init() {
         isLoading = true
@@ -37,7 +38,8 @@ final class HomeViewModel: ObservableObject {
     func fetchCoins() async {
         isLoading = true
         do {
-            let coins = try await service.fetchCoins(page: page)
+            await fetchMarketData()
+            let coins = try await coinService.fetchCoins(page: page)
             allCoins.append(contentsOf: coins)
             hasMoreCoins = !coins.isEmpty
         } catch {
@@ -62,5 +64,32 @@ final class HomeViewModel: ObservableObject {
             || coin.symbol.lowercased().contains(searchText.lowercased())
             || coin.id.lowercased().contains(searchText.lowercased())
         }
+    }
+
+    func fetchMarketData() async {
+        do {
+            let marketData = try await marketDataService.fetchMarketData()
+            statistics = createStatistics(with: marketData)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    private func createStatistics(with data: MarketData) -> [Statistic] {
+        let marketCap = Statistic(
+            type: .marketCap,
+            value: data.marketCap,
+            percentageChange: data.marketCapChangePercentage24HUsd)
+        let volume = Statistic(
+            type: .volume,
+            value: data.volume)
+        let btcDominance = Statistic(
+            type: .dominance,
+            value: data.btcDominance)
+        let portfolio = Statistic(
+            type: .portfolio,
+            value: "$0.0",
+            percentageChange: 1)
+        return [marketCap, volume, btcDominance, portfolio]
     }
 }
