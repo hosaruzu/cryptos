@@ -22,7 +22,7 @@ struct EditPortfolioView: View {
                     SearchBarView(searchText: $viewModel.searchText)
                     coinsMenu
 
-                    if selectedCoin != nil && viewModel.inSearchMode {
+                    if selectedCoin != nil {
                         portfolioForm
                     }
                 }
@@ -59,17 +59,19 @@ struct EditPortfolioView: View {
     }
 }
 
+// MARK: - Subviews
+
 private extension EditPortfolioView {
     var coinsMenu: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 10) {
-                ForEach(viewModel.inSearchMode ? viewModel.filterCoins : viewModel.allCoins) { coin in
+                ForEach(viewModel.inSearchMode ? viewModel.filterCoins : viewModel.portfolioCoins) { coin in
                     CoinLogoView(coin: coin)
                         .frame(width: 75)
                         .padding(4)
                         .onTapGesture {
                             withAnimation(.bouncy) {
-                                selectedCoin = coin
+                                updateSelectedCoin(coin)
                             }
                         }
                         .background(
@@ -122,6 +124,8 @@ private extension EditPortfolioView {
     }
 }
 
+// MARK: - Private methods
+
 private extension EditPortfolioView {
     func getCurrentPrice() -> String {
         guard let quantity = Double(quantityText),
@@ -135,7 +139,7 @@ private extension EditPortfolioView {
         guard let quantity = Double(quantityText),
               let selectedCoin
         else { return }
-        viewModel.saveToPortfolio(selectedCoin, holdings: quantity)
+        viewModel.updatePortfolio(selectedCoin, amount: quantity)
 
         withAnimation(.bouncy) {
             showCheckmark = true
@@ -149,6 +153,16 @@ private extension EditPortfolioView {
     func removeSelectedCoin() {
         selectedCoin = nil
         viewModel.searchText = ""
+    }
+
+    private func updateSelectedCoin(_ coin: Coin) {
+        selectedCoin = coin
+        if let portfolioCoin = viewModel.portfolioCoins.first(where: { $0.id == coin.id }) {
+            let amount = portfolioCoin.currentHoldings
+            quantityText = "\(amount ?? 0.0)"
+        } else {
+            quantityText = ""
+        }
     }
 }
 

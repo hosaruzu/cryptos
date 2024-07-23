@@ -10,30 +10,54 @@ import Foundation
 @MainActor
 final class HomeViewModel: ObservableObject {
 
-    @Published var isLoading: Bool
-    @Published var hasMoreCoins = true
+    // MARK: - Puplic properties
 
-    @Published var statistics: [Statistic] = Statistic.mock
+    /// Coins: initial list & filtered list
     @Published var allCoins: [Coin] = []
     @Published var filterCoins: [Coin] = []
-    @Published var portfolioCoins: [Coin] = []
+
+    /// Coins for portfolio list
+    @Published var portfolioCoins: [Coin] = [] {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+
+    /// Statistics data
+    @Published var statistics: [Statistic] = []
+
+    /// Current loading state
+    @Published var isLoading: Bool = true
+
+    /// Error message
     @Published var errorMessage: String = ""
+
+    /// Searching
     @Published var searchText: String = "" {
         didSet {
             inSearchMode = !searchText.isEmpty
             performLocalSearch()
         }
     }
-    @Published var inSearchMode = false
+    @Published var inSearchMode = false {
+        didSet {
+            reloadPortfolio(with: inSearchMode ? filterCoins : allCoins)
+        }
+    }
 
+    // MARK: - Pagination
+    /// Current page
     private(set) var page: Int = 1
+    /// Pagination state
+    @Published var hasMoreCoins = true
+
+    // MARK: - Dependecies
 
     private let coinService = FetchCoinsService()
     private let marketDataService = FetchMarketDataService()
+    private let portfolioDataService = PortfolioDataService()
 
-    init() {
-        isLoading = true
-    }
+    // MARK: - Coin service
 
     func fetchCoins() async {
         isLoading = true
@@ -41,17 +65,14 @@ final class HomeViewModel: ObservableObject {
             await fetchMarketData()
             let coins = try await coinService.fetchCoins(page: page)
             allCoins.append(contentsOf: coins)
+            reloadPortfolio(with: allCoins)
             hasMoreCoins = !coins.isEmpty
+            page += 1
         } catch {
             print(error)
             errorMessage = error.localizedDescription
         }
         isLoading = false
-    }
-
-    func fetchMoreCoins() async {
-        page += 1
-        await fetchCoins()
     }
 
     private func performLocalSearch() {
@@ -65,6 +86,8 @@ final class HomeViewModel: ObservableObject {
             || coin.id.lowercased().contains(searchText.lowercased())
         }
     }
+
+    // MARK: - Market data service
 
     func fetchMarketData() async {
         do {
@@ -93,8 +116,20 @@ final class HomeViewModel: ObservableObject {
         return [marketCap, volume, btcDominance, portfolio]
     }
 
-    func saveToPortfolio(_ coin: Coin, holdings: Double) {
-        let coin = coin.updateHoldings(amount: holdings)
-        portfolioCoins.append(coin)
+    // MARK: - Portfolio data service
+
+    func reloadPortfolio(with coins: [Coin]) {
+        let entities = portfolioDataService.getPortfolio()
+        portfolioCoins = entities.compactMap { entity in
+            if let coin = coins.first(where: { $0.id == entity.coinID }) {
+                return coin.updateHoldings(amount: entity.amount)
+            }
+            return nil
+        }
+    }
+
+    func updatePortfolio(_ coin: Coin, amount: Double) {
+        portfolioDataService.updatePortfolio(coin, amount: amount)
+        reloadPortfolio(with: allCoins)
     }
 }

@@ -27,7 +27,7 @@ struct ListView<Content: View>: View {
         coins: [Coin],
         showHolidngsColumn: Bool = false
     ) where Content == EmptyView {
-        self.init(coins: coins) {
+        self.init(coins: coins, showHolidngsColumn: showHolidngsColumn) {
             EmptyView()
         }
     }
@@ -47,7 +47,7 @@ struct ListView<Content: View>: View {
 }
 
 #Preview {
-    ListView(coins: [Coin.mock], showHolidngsColumn: false) {
+    ListView(coins: [Coin.mock], showHolidngsColumn: true) {
         Text("Footer")
     }
 }
