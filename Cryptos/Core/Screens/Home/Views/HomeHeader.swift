@@ -10,22 +10,28 @@ import SwiftUI
 struct HomeHeader: View {
 
     @Binding var isChanged: Bool
+    @Binding var showPortfolioView: Bool
 
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             CircleButtonView(iconName: isChanged ? "plus.square" : "info.square")
                 .animation(.none, value: isChanged)
+                .onTapGesture {
+                    if isChanged {
+                        showPortfolioView.toggle()
+                    }
+                }
                 .background(
                     CircleButtonAnimationView(animate: $isChanged)
                 )
             CircleButtonView(iconName: "arrow.clockwise.square")
-            Spacer(minLength: 0)
+            Spacer()
             Text(isChanged ? "Portfolio" : "Prices")
                 .animation(.none, value: isChanged)
                 .font(.headline.bold())
                 .foregroundStyle(Color.theme.accent)
-            Spacer(minLength: 0)
-            Spacer(minLength: 0)
+            Spacer()
+            Spacer()
             CircleButtonView(iconName: "chevron.right.square")
                 .rotationEffect(Angle(degrees: isChanged ? UIConstants.rotationValue : 0))
                 .onTapGesture {
@@ -34,12 +40,11 @@ struct HomeHeader: View {
                     }
                 }
         }
-        .padding(.horizontal)
     }
 }
 
 #Preview {
-    HomeHeader(isChanged: .constant(false))
+    HomeHeader(isChanged: .constant(true), showPortfolioView: .constant(true))
 }
 
 private enum UIConstants {

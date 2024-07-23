@@ -23,7 +23,7 @@ struct Coin: Decodable, Identifiable, Equatable {
     let totalVolume: Double
     let high24H: Double?
     let low24H: Double?
-    let priceChange24H: Double
+    let priceChange24H: Double?
     let priceChangePercentage24H: Double
     let marketCapChange24H: Double
     let marketCapChangePercentage24H: Double

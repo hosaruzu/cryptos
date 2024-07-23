@@ -15,6 +15,7 @@ struct HomeView: View {
     // MARK: - State
 
     @State private var atPortfolio: Bool = false
+    @State private var showPortfolioView: Bool = false
     @State private var id = 0
 
     // MARK: - Body
@@ -23,16 +24,17 @@ struct HomeView: View {
         ZStack(alignment: .top) {
             Color.theme.background
                 .ignoresSafeArea()
-
-            VStack(spacing: 0) {
-                HomeHeader(isChanged: $atPortfolio)
+                .sheet(isPresented: $showPortfolioView, content: {
+                    PortfolioView(viewModel: viewModel)
+                })
+            VStack {
+                HomeHeader(isChanged: $atPortfolio, showPortfolioView: $showPortfolioView)
 
                 if isFirstLoadingAtPricesPage() {
                     ProgressView()
                         .progressViewStyle(.circular)
                 } else {
                     HomeStatisticsView(statistics: viewModel.statistics, atPortfolio: $atPortfolio)
-
                     SearchBarView(searchText: $viewModel.searchText)
 
                     if !atPortfolio {

@@ -20,7 +20,7 @@ enum CoinRequest: RequestProtocol {
         case .getCoins(let page):
             [
                 "vs_currency": "usd",
-                "per_page": "20",
+                "per_page": "50",
                 "page": String(page),
                 "sparkline": "\(true)",
                 "price_change_percentage": "24h"

@@ -16,7 +16,7 @@ struct HomeStatisticsView: View {
         HStack {
             ForEach(statistics) { statistics in
                 StatisticView(statistic: statistics)
-                    .frame(width: UIScreen.main.bounds.width / 3)
+                    .frame(width: UIScreen.main.bounds.width / 3.33)
             }
         }
         .frame(width: UIScreen.main.bounds.width, alignment: atPortfolio ? .trailing : .leading)
@@ -25,5 +25,5 @@ struct HomeStatisticsView: View {
 }
 
 #Preview {
-    HomeStatisticsView(statistics: Statistic.mock, atPortfolio: .constant(true))
+    HomeStatisticsView(statistics: Statistic.mock, atPortfolio: .constant(false))
 }
