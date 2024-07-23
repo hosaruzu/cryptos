@@ -17,6 +17,7 @@ struct HomeView: View {
     @State private var atPortfolio: Bool = false
     @State private var showPortfolioView: Bool = false
     @State private var id = 0
+    @State private var refreshID = UUID()
 
     // MARK: - Body
 
@@ -25,7 +26,10 @@ struct HomeView: View {
             Color.theme.background
                 .ignoresSafeArea()
                 .sheet(isPresented: $showPortfolioView, content: {
-                    PortfolioView(viewModel: viewModel)
+                    EditPortfolioView(viewModel: viewModel)
+                        .onDisappear(perform: {
+                            self.refreshID = UUID()
+                        })
                 })
             VStack {
                 HomeHeader(isChanged: $atPortfolio, showPortfolioView: $showPortfolioView)
@@ -47,7 +51,7 @@ struct HomeView: View {
                             if !viewModel.inSearchMode {
                                 loaderView
                                     .task {
-                                        await viewModel.fetchMoreCoins()
+                                        await viewModel.fetchCoins()
                                     }
                             }
                         }
@@ -57,6 +61,7 @@ struct HomeView: View {
                             listHeaderView
                             ListView(coins: viewModel.portfolioCoins, showHolidngsColumn: true)
                                 .transition(.move(edge: .trailing))
+                                .id(UUID())
                         } else {
                             emptyPortfolioView
                         }
