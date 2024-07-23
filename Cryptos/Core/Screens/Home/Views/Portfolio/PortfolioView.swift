@@ -22,7 +22,7 @@ struct PortfolioView: View {
                     SearchBarView(searchText: $viewModel.searchText)
                     coinsMenu
 
-                    if selectedCoin != nil {
+                    if selectedCoin != nil && viewModel.inSearchMode {
                         portfolioForm
                     }
                 }
