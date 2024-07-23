@@ -1,5 +1,5 @@
 //
-//  PortfolioView.swift
+//  EditPortfolioView.swift
 //  Cryptos
 //
 //  Created by Artem Tebenkov on 22.07.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PortfolioView: View {
+struct EditPortfolioView: View {
 
     @Environment(\.dismiss) var dissmiss
     @ObservedObject var viewModel: HomeViewModel
@@ -59,7 +59,7 @@ struct PortfolioView: View {
     }
 }
 
-private extension PortfolioView {
+private extension EditPortfolioView {
     var coinsMenu: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 10) {
@@ -122,7 +122,7 @@ private extension PortfolioView {
     }
 }
 
-private extension PortfolioView {
+private extension EditPortfolioView {
     func getCurrentPrice() -> String {
         guard let quantity = Double(quantityText),
               let currentPrice = selectedCoin?.currentPrice
@@ -153,5 +153,5 @@ private extension PortfolioView {
 }
 
 #Preview {
-    PortfolioView(viewModel: HomeViewModel())
+    EditPortfolioView(viewModel: HomeViewModel())
 }

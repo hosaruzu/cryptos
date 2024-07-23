@@ -25,7 +25,7 @@ struct HomeView: View {
             Color.theme.background
                 .ignoresSafeArea()
                 .sheet(isPresented: $showPortfolioView, content: {
-                    PortfolioView(viewModel: viewModel)
+                    EditPortfolioView(viewModel: viewModel)
                 })
             VStack {
                 HomeHeader(isChanged: $atPortfolio, showPortfolioView: $showPortfolioView)
