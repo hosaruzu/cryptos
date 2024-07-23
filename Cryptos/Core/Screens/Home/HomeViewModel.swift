@@ -17,11 +17,7 @@ final class HomeViewModel: ObservableObject {
     @Published var filterCoins: [Coin] = []
 
     /// Coins for portfolio list
-    @Published var portfolioCoins: [Coin] = [] {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    @Published var portfolioCoins: [Coin] = []
 
     /// Statistics data
     @Published var statistics: [Statistic] = []
