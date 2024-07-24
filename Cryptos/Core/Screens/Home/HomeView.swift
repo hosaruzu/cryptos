@@ -51,9 +51,12 @@ struct HomeView: View {
                             if !viewModel.inSearchMode {
                                 loaderView
                                     .task {
-                                        await viewModel.fetchCoins()
+                                        await viewModel.onLoad()
                                     }
                             }
+                        }
+                        .refreshable {
+                            await viewModel.onRefresh()
                         }
                         .transition(.move(edge: .leading))
                     } else {
@@ -69,7 +72,7 @@ struct HomeView: View {
                 }
             }
             .task {
-                await viewModel.fetchCoins()
+                await viewModel.onLoad()
             }
         }
     }

@@ -17,11 +17,7 @@ final class HomeViewModel: ObservableObject {
     @Published var filterCoins: [Coin] = []
 
     /// Coins for portfolio list
-    @Published var portfolioCoins: [Coin] = [] {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    @Published var portfolioCoins: [Coin] = []
 
     /// Statistics data
     @Published var statistics: [Statistic] = []
@@ -59,20 +55,40 @@ final class HomeViewModel: ObservableObject {
 
     // MARK: - Coin service
 
-    func fetchCoins() async {
-        isLoading = true
+    func onRefresh() async {
+        allCoins = []
+        filterCoins = []
+        statistics = []
         do {
             await fetchMarketData()
-            let coins = try await coinService.fetchCoins(page: page)
+            let coins = try await coinService.fetchCoins(page: 1)
             allCoins.append(contentsOf: coins)
             reloadPortfolio(with: allCoins)
-            hasMoreCoins = !coins.isEmpty
-            page += 1
+        } catch {
+            print(error)
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    func onLoad() async {
+        isLoading = true
+        do {
+            try await fetchCoins()
+            await fetchMarketData()
+            reloadPortfolio(with: allCoins)
+            updatePortfolioStats()
         } catch {
             print(error)
             errorMessage = error.localizedDescription
         }
         isLoading = false
+    }
+
+    private func fetchCoins() async throws {
+        let coins = try await coinService.fetchCoins(page: page)
+        allCoins.append(contentsOf: coins)
+        hasMoreCoins = !coins.isEmpty
+        page += 1
     }
 
     private func performLocalSearch() {
@@ -89,7 +105,7 @@ final class HomeViewModel: ObservableObject {
 
     // MARK: - Market data service
 
-    func fetchMarketData() async {
+   private func fetchMarketData() async {
         do {
             let marketData = try await marketDataService.fetchMarketData()
             statistics = createStatistics(with: marketData)
@@ -109,16 +125,12 @@ final class HomeViewModel: ObservableObject {
         let btcDominance = Statistic(
             type: .dominance,
             value: data.btcDominance)
-        let portfolio = Statistic(
-            type: .portfolio,
-            value: "$0.0",
-            percentageChange: 1)
-        return [marketCap, volume, btcDominance, portfolio]
+        return [marketCap, volume, btcDominance]
     }
 
     // MARK: - Portfolio data service
 
-    func reloadPortfolio(with coins: [Coin]) {
+   private func reloadPortfolio(with coins: [Coin]) {
         let entities = portfolioDataService.getPortfolio()
         portfolioCoins = entities.compactMap { entity in
             if let coin = coins.first(where: { $0.id == entity.coinID }) {
@@ -126,10 +138,40 @@ final class HomeViewModel: ObservableObject {
             }
             return nil
         }
+   }
+
+    private func updatePortfolioStats() {
+        let previousValue = portfolioCoins
+            .map { coin -> Double in
+                let currentValue = coin.currentHoldingsValue
+                let percentChange = coin.priceChangePercentage24H / 100
+                let previousValue = currentValue / (1 + percentChange)
+                return previousValue
+            }
+            .reduce(0, +)
+
+        let portfolioValue = portfolioCoins
+            .map { $0.currentHoldingsValue }
+            .reduce(0, +)
+
+        let percentageChange = ((portfolioValue - previousValue) / previousValue) * 100
+
+        let portfolio = Statistic(
+            type: .portfolio,
+            value: portfolioValue.asCurrencyWith2Decimals,
+            percentageChange: percentageChange)
+
+        if statistics.count > 3 {
+            statistics.removeLast()
+            statistics.append(portfolio)
+        } else {
+            statistics.append(portfolio)
+        }
     }
 
     func updatePortfolio(_ coin: Coin, amount: Double) {
         portfolioDataService.updatePortfolio(coin, amount: amount)
         reloadPortfolio(with: allCoins)
+        updatePortfolioStats()
     }
 }
