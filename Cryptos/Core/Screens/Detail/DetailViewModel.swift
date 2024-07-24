@@ -15,9 +15,10 @@ final class DetailViewModel: ObservableObject {
     @Published var errorMessage: String = ""
 
     let coin: Coin
-    @Published var coinDetails: CoinDetail?
+    @Published var additionalCoinData: CoinAdditional?
     @Published var overviewStatistics: [Statistic] = []
     @Published var additionalStatistics: [Statistic] = []
+
     @Published var isLoading: Bool = true
 
     // MARK: - Dependencies
@@ -35,7 +36,7 @@ final class DetailViewModel: ObservableObject {
 
     func onLoad() async {
         isLoading = true
-        await fetchCoin()
+        await fetchAdditionalCoinData()
         setupOverviewStatistics()
         setupDetailStatistics()
         isLoading = false
@@ -43,10 +44,10 @@ final class DetailViewModel: ObservableObject {
 
     // MARK: - Fetch detail coin data
 
-    private func fetchCoin() async {
+    private func fetchAdditionalCoinData() async {
         do {
-            let coin = try await coinService.fetchCoin(id: coin.id)
-            self.coinDetails = coin
+            let additionalCoinData = try await coinService.fetchCoinAdditionalCoinData(id: coin.id)
+            self.additionalCoinData = additionalCoinData
         } catch {
             print(error)
             errorMessage = error.localizedDescription
@@ -85,10 +86,10 @@ final class DetailViewModel: ObservableObject {
         let marketCapChange = "$\(coin.marketCapChange24H.formattedWithAbbreviations)"
         let marketCapPercentChange = coin.marketCapChangePercentage24H
 
-        let blockTime = coinDetails?.blockTimeInMinutes ?? 0
+        let blockTime = additionalCoinData?.blockTimeInMinutes ?? 0
         let blockTimeString = blockTime == 0 ? "n/a" : "\(blockTime)"
 
-        let hashingAlgorithm = coinDetails?.hashingAlgorithm ?? "n/a"
+        let hashingAlgorithm = additionalCoinData?.hashingAlgorithm ?? "n/a"
 
         additionalStatistics = [
             Statistic(type: .detail24HHigh, value: high),

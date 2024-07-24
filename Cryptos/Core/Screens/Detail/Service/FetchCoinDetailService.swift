@@ -21,9 +21,9 @@ final class FetchCoinDetailService {
 
     // MARK: - Fetch coins
 
-    func fetchCoin(id: String) async throws -> CoinDetail {
+    func fetchCoinAdditionalCoinData(id: String) async throws -> CoinAdditional {
         let requestData = DetailCoinRequest.getCoin(id: id)
-        let coin: CoinDetail = try await requestManager.request(with: requestData)
+        let coin: CoinAdditional = try await requestManager.request(with: requestData)
         return coin
     }
 }
