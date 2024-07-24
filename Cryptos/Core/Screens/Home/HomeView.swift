@@ -51,7 +51,7 @@ struct HomeView: View {
                             if !viewModel.inSearchMode {
                                 loaderView
                                     .task {
-                                        await viewModel.fetchCoins()
+                                        await viewModel.onLoad()
                                     }
                             }
                         }
@@ -72,7 +72,7 @@ struct HomeView: View {
                 }
             }
             .task {
-                await viewModel.fetchCoins()
+                await viewModel.onLoad()
             }
         }
     }

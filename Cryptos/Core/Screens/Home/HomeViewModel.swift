@@ -66,23 +66,29 @@ final class HomeViewModel: ObservableObject {
             reloadPortfolio(with: allCoins)
         } catch {
             print(error)
+            errorMessage = error.localizedDescription
         }
     }
 
-    func fetchCoins() async {
+    func onLoad() async {
         isLoading = true
         do {
+            try await fetchCoins()
             await fetchMarketData()
-            let coins = try await coinService.fetchCoins(page: page)
-            allCoins.append(contentsOf: coins)
             reloadPortfolio(with: allCoins)
-            hasMoreCoins = !coins.isEmpty
-            page += 1
+            createPortfolioStats()
         } catch {
             print(error)
             errorMessage = error.localizedDescription
         }
         isLoading = false
+    }
+
+    private func fetchCoins() async throws {
+        let coins = try await coinService.fetchCoins(page: page)
+        allCoins.append(contentsOf: coins)
+        hasMoreCoins = !coins.isEmpty
+        page += 1
     }
 
     private func performLocalSearch() {
@@ -99,7 +105,7 @@ final class HomeViewModel: ObservableObject {
 
     // MARK: - Market data service
 
-    func fetchMarketData() async {
+   private func fetchMarketData() async {
         do {
             let marketData = try await marketDataService.fetchMarketData()
             statistics = createStatistics(with: marketData)
@@ -119,16 +125,12 @@ final class HomeViewModel: ObservableObject {
         let btcDominance = Statistic(
             type: .dominance,
             value: data.btcDominance)
-        let portfolio = Statistic(
-            type: .portfolio,
-            value: "$0.0",
-            percentageChange: 1)
-        return [marketCap, volume, btcDominance, portfolio]
+        return [marketCap, volume, btcDominance]
     }
 
     // MARK: - Portfolio data service
 
-    func reloadPortfolio(with coins: [Coin]) {
+   private func reloadPortfolio(with coins: [Coin]) {
         let entities = portfolioDataService.getPortfolio()
         portfolioCoins = entities.compactMap { entity in
             if let coin = coins.first(where: { $0.id == entity.coinID }) {
@@ -136,6 +138,17 @@ final class HomeViewModel: ObservableObject {
             }
             return nil
         }
+    }
+
+   private func createPortfolioStats() {
+        let portfolioValue = portfolioCoins
+            .map { $0.currentHoldingsValue }
+            .reduce(0, +)
+        let portfolio = Statistic(
+            type: .portfolio,
+            value: portfolioValue.asCurrencyWith2Decimals,
+            percentageChange: 1)
+        statistics.append(portfolio)
     }
 
     func updatePortfolio(_ coin: Coin, amount: Double) {
