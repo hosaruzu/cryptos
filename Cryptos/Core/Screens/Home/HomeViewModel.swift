@@ -55,6 +55,20 @@ final class HomeViewModel: ObservableObject {
 
     // MARK: - Coin service
 
+    func onRefresh() async {
+        allCoins = []
+        filterCoins = []
+        statistics = []
+        do {
+            await fetchMarketData()
+            let coins = try await coinService.fetchCoins(page: 1)
+            allCoins.append(contentsOf: coins)
+            reloadPortfolio(with: allCoins)
+        } catch {
+            print(error)
+        }
+    }
+
     func fetchCoins() async {
         isLoading = true
         do {

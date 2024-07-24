@@ -55,6 +55,9 @@ struct HomeView: View {
                                     }
                             }
                         }
+                        .refreshable {
+                            await viewModel.onRefresh()
+                        }
                         .transition(.move(edge: .leading))
                     } else {
                         if havePortfolioCoins() {

@@ -14,7 +14,7 @@ struct HomeHeader: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            CircleButtonView(iconName: isChanged ? "plus.square" : "info.square")
+            CircleButtonView(iconName: isChanged ? "pencil" : "info")
                 .animation(.none, value: isChanged)
                 .onTapGesture {
                     if isChanged {
@@ -24,15 +24,13 @@ struct HomeHeader: View {
                 .background(
                     CircleButtonAnimationView(animate: $isChanged)
                 )
-            CircleButtonView(iconName: "arrow.clockwise.square")
             Spacer()
             Text(isChanged ? "Portfolio" : "Prices")
                 .animation(.none, value: isChanged)
                 .font(.headline.bold())
                 .foregroundStyle(Color.theme.accent)
             Spacer()
-            Spacer()
-            CircleButtonView(iconName: "chevron.right.square")
+            CircleButtonView(iconName: "chevron.right")
                 .rotationEffect(Angle(degrees: isChanged ? UIConstants.rotationValue : 0))
                 .onTapGesture {
                     withAnimation(.spring()) {

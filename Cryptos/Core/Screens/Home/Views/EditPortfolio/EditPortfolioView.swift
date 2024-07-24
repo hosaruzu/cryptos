@@ -34,8 +34,8 @@ struct EditPortfolioView: View {
                     Button {
                         dissmiss()
                     } label: {
-                        Image(systemName: "xmark.square")
-                            .font(.title2)
+                        Image(systemName: "xmark")
+                            .font(.title3)
                             .tint(Color.theme.red)
                     }
                 }
@@ -44,8 +44,8 @@ struct EditPortfolioView: View {
                         saveButtonTapped()
                     } label: {
                         HStack {
-                            Image(systemName: showCheckmark ? "checkmark.square.fill" : "checkmark.square")
-                                .font(.title2)
+                            Image(systemName: showCheckmark ? "checkmark.square.fill" : "checkmark")
+                                .font(.title3)
                                 .tint(Color.theme.green)
                         }
                     }
