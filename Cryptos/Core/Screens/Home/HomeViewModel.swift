@@ -76,7 +76,7 @@ final class HomeViewModel: ObservableObject {
             try await fetchCoins()
             await fetchMarketData()
             reloadPortfolio(with: allCoins)
-            createPortfolioStats()
+            updatePortfolioStats()
         } catch {
             print(error)
             errorMessage = error.localizedDescription
@@ -138,21 +138,40 @@ final class HomeViewModel: ObservableObject {
             }
             return nil
         }
-    }
+   }
 
-   private func createPortfolioStats() {
+    private func updatePortfolioStats() {
+        let previousValue = portfolioCoins
+            .map { coin -> Double in
+                let currentValue = coin.currentHoldingsValue
+                let percentChange = coin.priceChangePercentage24H / 100
+                let previousValue = currentValue / (1 + percentChange)
+                return previousValue
+            }
+            .reduce(0, +)
+
         let portfolioValue = portfolioCoins
             .map { $0.currentHoldingsValue }
             .reduce(0, +)
+
+        let percentageChange = ((portfolioValue - previousValue) / previousValue) * 100
+
         let portfolio = Statistic(
             type: .portfolio,
             value: portfolioValue.asCurrencyWith2Decimals,
-            percentageChange: 1)
-        statistics.append(portfolio)
+            percentageChange: percentageChange)
+
+        if statistics.count > 3 {
+            statistics.removeLast()
+            statistics.append(portfolio)
+        } else {
+            statistics.append(portfolio)
+        }
     }
 
     func updatePortfolio(_ coin: Coin, amount: Double) {
         portfolioDataService.updatePortfolio(coin, amount: amount)
         reloadPortfolio(with: allCoins)
+        updatePortfolioStats()
     }
 }
