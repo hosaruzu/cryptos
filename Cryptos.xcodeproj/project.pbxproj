@@ -41,6 +41,7 @@
 		0CBAD3AC2C4ECD1200F3683D /* CoinLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3AB2C4ECD1200F3683D /* CoinLogoView.swift */; };
 		0CBAD3B02C4FDEE500F3683D /* PortfolioContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3AE2C4FDEE500F3683D /* PortfolioContainer.xcdatamodeld */; };
 		0CBAD3B22C4FDF7700F3683D /* PortfolioDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3B12C4FDF7700F3683D /* PortfolioDataService.swift */; };
+		0CBAD3B72C51346600F3683D /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3B62C51346600F3683D /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		0CBAD3AB2C4ECD1200F3683D /* CoinLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinLogoView.swift; sourceTree = "<group>"; };
 		0CBAD3AF2C4FDEE500F3683D /* PortfolioContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PortfolioContainer.xcdatamodel; sourceTree = "<group>"; };
 		0CBAD3B12C4FDF7700F3683D /* PortfolioDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDataService.swift; sourceTree = "<group>"; };
+		0CBAD3B62C51346600F3683D /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +309,7 @@
 			children = (
 				0CBAD3B52C51342600F3683D /* Service */,
 				0CBAD3B42C51341A00F3683D /* Subviews */,
+				0CBAD3B62C51346600F3683D /* DetailView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				0C7E4C782C41749D0057BD66 /* APIManager.swift in Sources */,
 				0CBAD3AC2C4ECD1200F3683D /* CoinLogoView.swift in Sources */,
 				0C7E4C842C4571EF0057BD66 /* HomeStatisticsView.swift in Sources */,
+				0CBAD3B72C51346600F3683D /* DetailView.swift in Sources */,
 				0C7E4C4E2C3EEA350057BD66 /* CircleButtonAnimationView.swift in Sources */,
 				0CBAD3A82C4EC45300F3683D /* EditPortfolioView.swift in Sources */,
 				0C7E4C622C41612E0057BD66 /* ListView.swift in Sources */,
