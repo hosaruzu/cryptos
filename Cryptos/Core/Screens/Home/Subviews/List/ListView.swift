@@ -35,7 +35,12 @@ struct ListView<Content: View>: View {
         selectedCoin: Binding<Coin>,
         showHolidngsColumn: Bool = false
     ) where Content == EmptyView {
-        self.init(coins: coins, showDetailScreen: showDetailScreen, selectedCoin: selectedCoin, showHolidngsColumn: showHolidngsColumn) {
+        self.init(
+            coins: coins,
+            showDetailScreen: showDetailScreen,
+            selectedCoin: selectedCoin,
+            showHolidngsColumn: showHolidngsColumn
+        ) {
             EmptyView()
         }
     }

@@ -8,10 +8,23 @@
 import Foundation
 
 enum StatisticsType: String {
+    // Home
     case marketCap = "Market Cap"
     case volume = "24H Volume"
     case dominance = "BTC Dominance"
     case portfolio = "Portfolio value"
+
+    // Details
+    case detailCurrentPrice = "Current price"
+    case detailMarketCap = "Market Capitalization"
+    case detailRank = "Rank"
+    case detailVolume = "Total volume"
+    case detail24HHigh = "24h High"
+    case detail24HLow = "24h Low"
+    case detailPriceChange24H = "24h Price change"
+    case detailMarketCapChange = "24h Market cap change"
+    case detailBlockTime = "Block time"
+    case detailHashingAlgoritm = "Hashing algoritm"
 }
 
 struct Statistic: Identifiable {

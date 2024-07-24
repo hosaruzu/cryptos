@@ -43,7 +43,13 @@ struct HomeView: View {
                     ProgressView()
                         .progressViewStyle(.circular)
                 } else {
-                    HomeStatisticsView(statistics: viewModel.statistics, atPortfolio: $atPortfolio)
+                    if !viewModel.statistics.isEmpty {
+                        HomeStatisticsView(statistics: viewModel.statistics, atPortfolio: $atPortfolio)
+                    } else {
+                        ProgressView()
+                            .frame(height: 50)
+                            .progressViewStyle(.circular)
+                    }
                     SearchBarView(searchText: $viewModel.searchText)
 
                     if !atPortfolio {
