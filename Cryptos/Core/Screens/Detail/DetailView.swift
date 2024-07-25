@@ -15,6 +15,8 @@ struct DetailView: View {
 
     @ObservedObject private var viewModel: DetailViewModel
 
+    @State private var showFullDescription: Bool = false
+
     // MARK: - Init
 
     init(coin: Coin) {
@@ -33,6 +35,13 @@ struct DetailView: View {
                     VStack(spacing: 20) {
                         DetailTitle(title: "Overview")
                         if !viewModel.isLoading {
+                            descriptionView
+                        } else {
+                            ProgressView()
+                                .frame(height: 80)
+                                .progressViewStyle(.circular)
+                        }
+                        if !viewModel.isLoading {
                             InfoVGrid(statistics: viewModel.overviewStatistics)
                         } else {
                             ProgressView()
@@ -47,6 +56,7 @@ struct DetailView: View {
                                 .frame(height: 200)
                                 .progressViewStyle(.circular)
                         }
+                        linksView
                     }
                     .padding()
                 }
@@ -85,6 +95,52 @@ private extension DetailView {
         Text(viewModel.coin.symbol.uppercased())
             .font(.headline)
             .foregroundStyle(Color.theme.secondaryText)
+    }
+
+    var descriptionView: some View {
+        VStack {
+            if let coinDescription =  viewModel.additionalCoinData?.readableDescription,
+               !coinDescription.isEmpty {
+                VStack(alignment: .leading) {
+                    Text(coinDescription)
+                        .lineLimit(showFullDescription ? nil : 3)
+                        .font(.callout)
+                        .foregroundStyle(Color.theme.secondaryText)
+                        .animation(.easeInOut, value: showFullDescription)
+                    Button {
+                        showFullDescription.toggle()
+                    } label: {
+                        Text(showFullDescription ? "Hide" : "Read more...")
+                            .tint(.blue)
+                            .font(.caption.bold())
+                            .padding(.vertical, 4)
+                            .animation(.easeInOut, value: showFullDescription)
+                    }
+                }
+
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
+
+    var linksView: some View {
+        VStack {
+            if let website = viewModel.additionalCoinData?.links.homepage[0],
+               let url = URL(string: website) {
+                Link(destination: url) {
+                    Text("\(viewModel.coin.name) website")
+                }
+            }
+            if let website = viewModel.additionalCoinData?.links.subredditURL,
+               let url = URL(string: website) {
+                Link(destination: url) {
+                    Text("Reddit \(viewModel.coin.name) page")
+                }
+            }
+        }
+        .tint(.blue)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .font(.headline)
     }
 }
 

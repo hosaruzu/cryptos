@@ -8,13 +8,14 @@
 import Foundation
 
 struct CoinAdditional: Decodable {
-    let id: String
-    let symbol: String
-    let name: String
     let blockTimeInMinutes: Int
     let hashingAlgorithm: String?
     let description: CoinDescription
     let links: Links
+
+    var readableDescription: String {
+        description.en.removingHTMLOccurencies
+    }
 }
 
 // MARK: - Description

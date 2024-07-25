@@ -50,6 +50,7 @@
 		0CBAD3C42C5187FE00F3683D /* InfoVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3C32C5187FE00F3683D /* InfoVGrid.swift */; };
 		0CBAD3C62C527F8700F3683D /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3C52C527F8700F3683D /* ChartView.swift */; };
 		0CBAD3C82C52862400F3683D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3C72C52862400F3683D /* Date.swift */; };
+		0CBAD3CA2C528EE400F3683D /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3C92C528EE400F3683D /* String+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		0CBAD3C32C5187FE00F3683D /* InfoVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVGrid.swift; sourceTree = "<group>"; };
 		0CBAD3C52C527F8700F3683D /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		0CBAD3C72C52862400F3683D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		0CBAD3C92C528EE400F3683D /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				0C7E4C412C3ED41C0057BD66 /* Color+Ext.swift */,
 				0C7E4C5B2C4043470057BD66 /* Double+Ext.swift */,
 				0CBAD3C72C52862400F3683D /* Date.swift */,
+				0CBAD3C92C528EE400F3683D /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				0CBAD3BB2C515B5200F3683D /* DetailViewModel.swift in Sources */,
 				0C7E4C4C2C3EE1D60057BD66 /* CircleButtonView.swift in Sources */,
 				0C7E4C502C3EF06F0057BD66 /* HomeHeader.swift in Sources */,
+				0CBAD3CA2C528EE400F3683D /* String+Ext.swift in Sources */,
 				0C7E4C822C456E3A0057BD66 /* StatisticView.swift in Sources */,
 				0C7E4C422C3ED41C0057BD66 /* Color+Ext.swift in Sources */,
 				0C7E4C6B2C4170A70057BD66 /* APIConstants.swift in Sources */,
