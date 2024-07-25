@@ -55,6 +55,7 @@
 		0CBAD3CF2C529D8C00F3683D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3CE2C529D8C00F3683D /* SettingsViewModel.swift */; };
 		0CBAD3D22C52A81E00F3683D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CBAD3D12C52A81E00F3683D /* Launch Screen.storyboard */; };
 		0CBAD3D52C52A99000F3683D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3D42C52A99000F3683D /* LaunchView.swift */; };
+		0CBAD3D82C52B6A800F3683D /* NetworkCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3D72C52B6A800F3683D /* NetworkCacheService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		0CBAD3D02C52A7E500F3683D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0CBAD3D12C52A81E00F3683D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0CBAD3D42C52A99000F3683D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		0CBAD3D72C52B6A800F3683D /* NetworkCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCacheService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +274,7 @@
 		0C7E4C632C416EFE0057BD66 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				0CBAD3D62C52B68C00F3683D /* CacheService */,
 				0C7E4C762C41745E0057BD66 /* Network */,
 				0C7E4C732C41738F0057BD66 /* Parser */,
 				0C7E4C672C416FFD0057BD66 /* Request */,
@@ -385,6 +388,14 @@
 			path = LaunchView;
 			sourceTree = "<group>";
 		};
+		0CBAD3D62C52B68C00F3683D /* CacheService */ = {
+			isa = PBXGroup;
+			children = (
+				0CBAD3D72C52B6A800F3683D /* NetworkCacheService.swift */,
+			);
+			path = CacheService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -485,6 +496,7 @@
 				0CBAD3A42C4E95C500F3683D /* FetchMarketDataService.swift in Sources */,
 				0C7E4C702C4172AC0057BD66 /* NetworkError.swift in Sources */,
 				0C7E4C5A2C403D8A0057BD66 /* CoinRowView.swift in Sources */,
+				0CBAD3D82C52B6A800F3683D /* NetworkCacheService.swift in Sources */,
 				0CBAD3A22C4E90B800F3683D /* MarketData.swift in Sources */,
 				0CBAD3BF2C515C4200F3683D /* FetchCoinDetailService.swift in Sources */,
 				0CBAD3A62C4E95F400F3683D /* MarketDataRequest.swift in Sources */,
