@@ -18,6 +18,8 @@ struct HomeView: View {
     @State private var showPortfolioView: Bool = false
     @State private var id = 0
     @State private var refreshID = UUID()
+    @State private var showDetailScreen: Bool = false
+    @State private var selectedCoin: Coin = Coin.mock
 
     // MARK: - Body
 
@@ -31,6 +33,9 @@ struct HomeView: View {
                             self.refreshID = UUID()
                         })
                 })
+                .fullScreenCover(isPresented: $showDetailScreen) {
+                    DetailView(coin: selectedCoin)
+                }
             VStack {
                 HomeHeader(isChanged: $atPortfolio, showPortfolioView: $showPortfolioView)
 
@@ -38,7 +43,13 @@ struct HomeView: View {
                     ProgressView()
                         .progressViewStyle(.circular)
                 } else {
-                    HomeStatisticsView(statistics: viewModel.statistics, atPortfolio: $atPortfolio)
+                    if !viewModel.statistics.isEmpty {
+                        HomeStatisticsView(statistics: viewModel.statistics, atPortfolio: $atPortfolio)
+                    } else {
+                        ProgressView()
+                            .frame(height: 50)
+                            .progressViewStyle(.circular)
+                    }
                     SearchBarView(searchText: $viewModel.searchText)
 
                     if !atPortfolio {
@@ -46,7 +57,9 @@ struct HomeView: View {
                         ListView(
                             coins: viewModel.inSearchMode
                             ? viewModel.filterCoins
-                            : viewModel.allCoins
+                            : viewModel.allCoins,
+                            showDetailScreen: $showDetailScreen,
+                            selectedCoin: $selectedCoin
                         ) {
                             if !viewModel.inSearchMode {
                                 loaderView
@@ -62,7 +75,12 @@ struct HomeView: View {
                     } else {
                         if havePortfolioCoins() {
                             listHeaderView
-                            ListView(coins: viewModel.portfolioCoins, showHolidngsColumn: true)
+                            ListView(
+                                coins: viewModel.portfolioCoins,
+                                showDetailScreen: $showDetailScreen,
+                                selectedCoin: $selectedCoin,
+                                showHolidngsColumn: true
+                            )
                                 .transition(.move(edge: .trailing))
                                 .id(UUID())
                         } else {
