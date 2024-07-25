@@ -11,14 +11,17 @@ struct HomeHeader: View {
 
     @Binding var isChanged: Bool
     @Binding var showPortfolioView: Bool
+    @Binding var showSettingsView: Bool
 
     var body: some View {
         HStack(spacing: 0) {
-            CircleButtonView(iconName: isChanged ? "pencil" : "info")
+            CircleButtonView(iconName: isChanged ? "pencil" : "gearshape")
                 .animation(.none, value: isChanged)
                 .onTapGesture {
                     if isChanged {
                         showPortfolioView.toggle()
+                    } else {
+                        showSettingsView.toggle()
                     }
                 }
                 .background(
@@ -42,7 +45,7 @@ struct HomeHeader: View {
 }
 
 #Preview {
-    HomeHeader(isChanged: .constant(true), showPortfolioView: .constant(true))
+    HomeHeader(isChanged: .constant(true), showPortfolioView: .constant(true), showSettingsView: .constant(true))
 }
 
 private enum UIConstants {

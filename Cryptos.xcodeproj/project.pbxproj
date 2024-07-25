@@ -51,6 +51,8 @@
 		0CBAD3C62C527F8700F3683D /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3C52C527F8700F3683D /* ChartView.swift */; };
 		0CBAD3C82C52862400F3683D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3C72C52862400F3683D /* Date.swift */; };
 		0CBAD3CA2C528EE400F3683D /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3C92C528EE400F3683D /* String+Ext.swift */; };
+		0CBAD3CD2C529B5100F3683D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3CC2C529B5100F3683D /* SettingsView.swift */; };
+		0CBAD3CF2C529D8C00F3683D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3CE2C529D8C00F3683D /* SettingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +101,8 @@
 		0CBAD3C52C527F8700F3683D /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		0CBAD3C72C52862400F3683D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		0CBAD3C92C528EE400F3683D /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		0CBAD3CC2C529B5100F3683D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0CBAD3CE2C529D8C00F3683D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,7 @@
 		0C7E4C452C3EDCCB0057BD66 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				0CBAD3CB2C529B4700F3683D /* Settings */,
 				0CBAD3AD2C4FDD2500F3683D /* List */,
 				0CBAD3AA2C4ECD0000F3683D /* EditPortfolio */,
 			);
@@ -355,6 +360,15 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		0CBAD3CB2C529B4700F3683D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0CBAD3CC2C529B5100F3683D /* SettingsView.swift */,
+				0CBAD3CE2C529D8C00F3683D /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -463,12 +477,14 @@
 				0CBAD3C22C51878A00F3683D /* DetailTitle.swift in Sources */,
 				0CBAD3B02C4FDEE500F3683D /* PortfolioContainer.xcdatamodeld in Sources */,
 				0C7E4C2D2C3ECE510057BD66 /* CryptosApp.swift in Sources */,
+				0CBAD3CF2C529D8C00F3683D /* SettingsViewModel.swift in Sources */,
 				0CBAD3C62C527F8700F3683D /* ChartView.swift in Sources */,
 				0C7E4C6D2C4171350057BD66 /* CoinRequest.swift in Sources */,
 				0C7E4C7A2C4175870057BD66 /* RequestManager.swift in Sources */,
 				0C7E4C802C456C360057BD66 /* Statistic.swift in Sources */,
 				0C7E4C752C4173A30057BD66 /* DataParser.swift in Sources */,
 				0C7E4C5E2C4153E80057BD66 /* HomeViewModel.swift in Sources */,
+				0CBAD3CD2C529B5100F3683D /* SettingsView.swift in Sources */,
 				0C7E4C7E2C45475C0057BD66 /* SearchBarView.swift in Sources */,
 				0CBAD3BB2C515B5200F3683D /* DetailViewModel.swift in Sources */,
 				0C7E4C4C2C3EE1D60057BD66 /* CircleButtonView.swift in Sources */,

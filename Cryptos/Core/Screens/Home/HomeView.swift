@@ -18,7 +18,8 @@ struct HomeView: View {
     @State private var showPortfolioView: Bool = false
     @State private var id = 0
     @State private var refreshID = UUID()
-    @State private var showDetailScreen: Bool = false
+    @State private var showDetailView: Bool = false
+    @State private var showSettingsView: Bool = false
     @State private var selectedCoin: Coin = Coin.mock
 
     // MARK: - Body
@@ -33,11 +34,18 @@ struct HomeView: View {
                             self.refreshID = UUID()
                         })
                 })
-                .fullScreenCover(isPresented: $showDetailScreen) {
+                .sheet(isPresented: $showSettingsView, content: {
+                    SettingsView()
+                })
+                .fullScreenCover(isPresented: $showDetailView) {
                     DetailView(coin: selectedCoin)
                 }
             VStack {
-                HomeHeader(isChanged: $atPortfolio, showPortfolioView: $showPortfolioView)
+                HomeHeader(
+                    isChanged: $atPortfolio,
+                    showPortfolioView: $showPortfolioView,
+                    showSettingsView: $showSettingsView
+                )
 
                 if isFirstLoadingAtPricesPage() {
                     ProgressView()
@@ -58,7 +66,7 @@ struct HomeView: View {
                             coins: viewModel.inSearchMode
                             ? viewModel.filterCoins
                             : viewModel.allCoins,
-                            showDetailScreen: $showDetailScreen,
+                            showDetailScreen: $showDetailView,
                             selectedCoin: $selectedCoin
                         ) {
                             if !viewModel.inSearchMode {
@@ -77,7 +85,7 @@ struct HomeView: View {
                             listHeaderView
                             ListView(
                                 coins: viewModel.portfolioCoins,
-                                showDetailScreen: $showDetailScreen,
+                                showDetailScreen: $showDetailView,
                                 selectedCoin: $selectedCoin,
                                 showHolidngsColumn: true
                             )
