@@ -26,27 +26,31 @@ struct DetailView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 20) {
-                    Text("Chart")
-                        .frame(height: 150)
-                    DetailTitle(title: "Overview")
-                    if !viewModel.isLoading {
-                        InfoVGrid(statistics: viewModel.overviewStatistics)
-                    } else {
-                        ProgressView()
-                            .frame(height: 200)
-                            .progressViewStyle(.circular)
+                VStack {
+                    ChartView(coin: viewModel.coin)
+                        .padding(.vertical)
+
+                    VStack(spacing: 20) {
+                        DetailTitle(title: "Overview")
+                        if !viewModel.isLoading {
+                            InfoVGrid(statistics: viewModel.overviewStatistics)
+                        } else {
+                            ProgressView()
+                                .frame(height: 200)
+                                .progressViewStyle(.circular)
+                        }
+                        DetailTitle(title: "Additional details")
+                        if !viewModel.isLoading {
+                            InfoVGrid(statistics: viewModel.additionalStatistics)
+                        } else {
+                            ProgressView()
+                                .frame(height: 200)
+                                .progressViewStyle(.circular)
+                        }
                     }
-                    DetailTitle(title: "Additional details")
-                    if !viewModel.isLoading {
-                        InfoVGrid(statistics: viewModel.additionalStatistics)
-                    } else {
-                        ProgressView()
-                            .frame(height: 200)
-                            .progressViewStyle(.circular)
-                    }
+                    .padding()
                 }
-                .padding()
+
             }
             .task {
                 await viewModel.onLoad()
@@ -55,6 +59,12 @@ struct DetailView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     dismissButton
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    HStack {
+                        subtitleView
+                        ImageView(urlString: viewModel.coin.image)
+                    }
                 }
             }
         }
@@ -69,6 +79,12 @@ private extension DetailView {
             Image(systemName: "xmark")
                 .font(.headline)
         }
+    }
+
+    var subtitleView: some View {
+        Text(viewModel.coin.symbol.uppercased())
+            .font(.headline)
+            .foregroundStyle(Color.theme.secondaryText)
     }
 }
 
