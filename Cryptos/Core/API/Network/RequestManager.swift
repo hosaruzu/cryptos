@@ -19,8 +19,8 @@ final class RequestManager: RequestManagerProtocol {
     let parser: DataParserProtocol
 
     init(
-        apiManager: APIManagerProtocol = APIManager(),
-        parser: DataParserProtocol = DataParser()
+        apiManager: some APIManagerProtocol = APIManager(),
+        parser: some DataParserProtocol = DataParser()
     ) {
         self.apiManager = apiManager
         self.parser = parser

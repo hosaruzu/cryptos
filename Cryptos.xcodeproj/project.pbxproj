@@ -51,6 +51,11 @@
 		0CBAD3C62C527F8700F3683D /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3C52C527F8700F3683D /* ChartView.swift */; };
 		0CBAD3C82C52862400F3683D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3C72C52862400F3683D /* Date.swift */; };
 		0CBAD3CA2C528EE400F3683D /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3C92C528EE400F3683D /* String+Ext.swift */; };
+		0CBAD3CD2C529B5100F3683D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3CC2C529B5100F3683D /* SettingsView.swift */; };
+		0CBAD3CF2C529D8C00F3683D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3CE2C529D8C00F3683D /* SettingsViewModel.swift */; };
+		0CBAD3D22C52A81E00F3683D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CBAD3D12C52A81E00F3683D /* Launch Screen.storyboard */; };
+		0CBAD3D52C52A99000F3683D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3D42C52A99000F3683D /* LaunchView.swift */; };
+		0CBAD3D82C52B6A800F3683D /* NetworkCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBAD3D72C52B6A800F3683D /* NetworkCacheService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +104,12 @@
 		0CBAD3C52C527F8700F3683D /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		0CBAD3C72C52862400F3683D /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		0CBAD3C92C528EE400F3683D /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		0CBAD3CC2C529B5100F3683D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0CBAD3CE2C529D8C00F3683D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		0CBAD3D02C52A7E500F3683D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0CBAD3D12C52A81E00F3683D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		0CBAD3D42C52A99000F3683D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		0CBAD3D72C52B6A800F3683D /* NetworkCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCacheService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +143,7 @@
 		0C7E4C2B2C3ECE510057BD66 /* Cryptos */ = {
 			isa = PBXGroup;
 			children = (
+				0CBAD3D02C52A7E500F3683D /* Info.plist */,
 				0C7E4C542C3F05290057BD66 /* App */,
 				0C7E4C492C3EE1B60057BD66 /* Core */,
 				0C7E4C402C3ED4060057BD66 /* Library */,
@@ -163,18 +175,21 @@
 		0C7E4C402C3ED4060057BD66 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				0C7E4C4A2C3EE1C00057BD66 /* UI Components */,
 				0C7E4C3F2C3ED3FF0057BD66 /* Extensions */,
 			);
 			path = Library;
 			sourceTree = "<group>";
 		};
-		0C7E4C432C3EDCB20057BD66 /* Screens */ = {
+		0C7E4C432C3EDCB20057BD66 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0CBAD3CB2C529B4700F3683D /* Settings */,
+				0CBAD3D32C52A98300F3683D /* LaunchView */,
 				0C7E4C442C3EDCBE0057BD66 /* Home */,
 				0CBAD3B32C51340B00F3683D /* Detail */,
 			);
-			path = Screens;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		0C7E4C442C3EDCBE0057BD66 /* Home */ = {
@@ -202,8 +217,7 @@
 			children = (
 				0C7E4C532C3F05230057BD66 /* Models */,
 				0C7E4C632C416EFE0057BD66 /* API */,
-				0C7E4C4A2C3EE1C00057BD66 /* UI Components */,
-				0C7E4C432C3EDCB20057BD66 /* Screens */,
+				0C7E4C432C3EDCB20057BD66 /* Modules */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -252,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				0CBAD39F2C49722200F3683D /* Assets.xcassets */,
+				0CBAD3D12C52A81E00F3683D /* Launch Screen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -259,6 +274,7 @@
 		0C7E4C632C416EFE0057BD66 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				0CBAD3D62C52B68C00F3683D /* CacheService */,
 				0C7E4C762C41745E0057BD66 /* Network */,
 				0C7E4C732C41738F0057BD66 /* Parser */,
 				0C7E4C672C416FFD0057BD66 /* Request */,
@@ -355,6 +371,31 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		0CBAD3CB2C529B4700F3683D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0CBAD3CC2C529B5100F3683D /* SettingsView.swift */,
+				0CBAD3CE2C529D8C00F3683D /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		0CBAD3D32C52A98300F3683D /* LaunchView */ = {
+			isa = PBXGroup;
+			children = (
+				0CBAD3D42C52A99000F3683D /* LaunchView.swift */,
+			);
+			path = LaunchView;
+			sourceTree = "<group>";
+		};
+		0CBAD3D62C52B68C00F3683D /* CacheService */ = {
+			isa = PBXGroup;
+			children = (
+				0CBAD3D72C52B6A800F3683D /* NetworkCacheService.swift */,
+			);
+			path = CacheService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -416,6 +457,7 @@
 			files = (
 				0C7E4C342C3ECE550057BD66 /* Preview Assets.xcassets in Resources */,
 				0CBAD3A02C49722200F3683D /* Assets.xcassets in Resources */,
+				0CBAD3D22C52A81E00F3683D /* Launch Screen.storyboard in Resources */,
 				0C7E4C3E2C3ED1A00057BD66 /* swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +481,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nPATH=/opt/homebrew/bin:$PATH\n    if which swiftlint >/dev/null; then\n    swiftlint\n    else\n        echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nPATH=/opt/homebrew/bin:$PATH\n    if which swiftlint >/dev/null; then\n    swiftlint  --config \"${PROJECT_DIR}/swiftlint.yml\"\n    else\n        echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -449,10 +491,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C7E4C7C2C45421E0057BD66 /* ImageView.swift in Sources */,
+				0CBAD3D52C52A99000F3683D /* LaunchView.swift in Sources */,
 				0C7E4C652C416F390057BD66 /* FetchCoinsService.swift in Sources */,
 				0CBAD3A42C4E95C500F3683D /* FetchMarketDataService.swift in Sources */,
 				0C7E4C702C4172AC0057BD66 /* NetworkError.swift in Sources */,
 				0C7E4C5A2C403D8A0057BD66 /* CoinRowView.swift in Sources */,
+				0CBAD3D82C52B6A800F3683D /* NetworkCacheService.swift in Sources */,
 				0CBAD3A22C4E90B800F3683D /* MarketData.swift in Sources */,
 				0CBAD3BF2C515C4200F3683D /* FetchCoinDetailService.swift in Sources */,
 				0CBAD3A62C4E95F400F3683D /* MarketDataRequest.swift in Sources */,
@@ -463,12 +507,14 @@
 				0CBAD3C22C51878A00F3683D /* DetailTitle.swift in Sources */,
 				0CBAD3B02C4FDEE500F3683D /* PortfolioContainer.xcdatamodeld in Sources */,
 				0C7E4C2D2C3ECE510057BD66 /* CryptosApp.swift in Sources */,
+				0CBAD3CF2C529D8C00F3683D /* SettingsViewModel.swift in Sources */,
 				0CBAD3C62C527F8700F3683D /* ChartView.swift in Sources */,
 				0C7E4C6D2C4171350057BD66 /* CoinRequest.swift in Sources */,
 				0C7E4C7A2C4175870057BD66 /* RequestManager.swift in Sources */,
 				0C7E4C802C456C360057BD66 /* Statistic.swift in Sources */,
 				0C7E4C752C4173A30057BD66 /* DataParser.swift in Sources */,
 				0C7E4C5E2C4153E80057BD66 /* HomeViewModel.swift in Sources */,
+				0CBAD3CD2C529B5100F3683D /* SettingsView.swift in Sources */,
 				0C7E4C7E2C45475C0057BD66 /* SearchBarView.swift in Sources */,
 				0CBAD3BB2C515B5200F3683D /* DetailViewModel.swift in Sources */,
 				0C7E4C4C2C3EE1D60057BD66 /* CircleButtonView.swift in Sources */,
@@ -625,10 +671,11 @@
 				DEVELOPMENT_TEAM = 4YYVSHC6RN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Cryptos/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cryptos Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -659,10 +706,11 @@
 				DEVELOPMENT_TEAM = 4YYVSHC6RN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Cryptos/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cryptos Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (

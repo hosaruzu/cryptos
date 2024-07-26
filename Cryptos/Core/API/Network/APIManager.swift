@@ -13,16 +13,30 @@ protocol APIManagerProtocol {
 
 final class APIManager: APIManagerProtocol {
     private let urlSession: URLSession
+    private let cacheService: NetworkCacheService
 
-    init(urlSession: URLSession = .shared) {
+    init(
+        urlSession: URLSession = .shared,
+        cacheService: some NetworkCacheService = NetworkCacheServiceImpl()
+    ) {
         self.urlSession = urlSession
+        self.cacheService = cacheService
     }
 
     func request(with data: some RequestProtocol) async throws -> Data {
-        let (data, response) = try await urlSession.data(for: data.request())
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200
+        if let cachedData = cacheService.retrieveCachedData(for: try data.request()) {
+            return cachedData
+        }
+
+        let (returnData, response) = try await urlSession.data(for: data.request())
+        guard
+            let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode == 200
         else { throw NetworkError.invalidServerResponse((response as? HTTPURLResponse)?.statusCode ?? 99) }
-        return data
+        cacheService.cacheData(
+            from: try data.request(),
+            cachedURLResponse: CachedURLResponse(response: response, data: returnData)
+        )
+        return returnData
     }
 }

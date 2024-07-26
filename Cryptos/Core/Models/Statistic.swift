@@ -45,7 +45,6 @@ struct Statistic: Identifiable {
 }
 
 extension Statistic {
-
     var title: String {
         type.rawValue
     }
@@ -55,5 +54,5 @@ extension Statistic {
         Statistic(type: .volume, value: "$1.23Tr"),
         Statistic(type: .dominance, value: "$13Tr", percentageChange: 1),
         Statistic(type: .portfolio, value: "$2", percentageChange: nil)
-        ]
+    ]
 }

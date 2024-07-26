@@ -8,7 +8,6 @@
 import Foundation
 
 extension Double {
-
     private func formatAsCurrency(_ fraction: Int, separator: Bool = false) -> String {
         let value = NSNumber(value: self)
         let formatter = NumberFormatter()
@@ -66,6 +65,5 @@ extension Double {
         default:
             return "\(sign)\(self)"
         }
-
     }
 }

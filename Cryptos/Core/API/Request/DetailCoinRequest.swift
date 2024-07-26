@@ -18,7 +18,6 @@ enum DetailCoinRequest: RequestProtocol {
     }
 
     var queryParams: [String: String?] {
-
         switch self {
         case .getCoin:
             [
