@@ -41,6 +41,8 @@ final class HomeViewModel: ObservableObject {
         }
     }
 
+    @Published var selectedCoin: Coin?
+
     // MARK: - Pagination
     /// Current page
     private(set) var page: Int = 1

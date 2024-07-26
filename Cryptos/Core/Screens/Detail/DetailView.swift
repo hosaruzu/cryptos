@@ -106,7 +106,7 @@ private extension DetailView {
                         .lineLimit(showFullDescription ? nil : 3)
                         .font(.callout)
                         .foregroundStyle(Color.theme.secondaryText)
-                        .animation(.easeInOut, value: showFullDescription)
+                        .animation(showFullDescription ? .easeInOut : .none, value: showFullDescription)
                     Button {
                         showFullDescription.toggle()
                     } label: {
@@ -114,7 +114,6 @@ private extension DetailView {
                             .tint(.blue)
                             .font(.caption.bold())
                             .padding(.vertical, 4)
-                            .animation(.easeInOut, value: showFullDescription)
                     }
                 }
 

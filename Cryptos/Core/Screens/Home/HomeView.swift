@@ -38,7 +38,9 @@ struct HomeView: View {
                     SettingsView()
                 })
                 .fullScreenCover(isPresented: $showDetailView) {
-                    DetailView(coin: selectedCoin)
+                    if let selectedCoin = viewModel.selectedCoin {
+                        DetailView(coin: selectedCoin)
+                    }
                 }
             VStack {
                 HomeHeader(
@@ -66,8 +68,7 @@ struct HomeView: View {
                             coins: viewModel.inSearchMode
                             ? viewModel.filterCoins
                             : viewModel.allCoins,
-                            showDetailScreen: $showDetailView,
-                            selectedCoin: $selectedCoin
+                            showDetailScreen: $showDetailView
                         ) {
                             if !viewModel.inSearchMode {
                                 loaderView
@@ -76,6 +77,7 @@ struct HomeView: View {
                                     }
                             }
                         }
+                        .environmentObject(viewModel)
                         .refreshable {
                             await viewModel.onRefresh()
                         }
@@ -86,7 +88,6 @@ struct HomeView: View {
                             ListView(
                                 coins: viewModel.portfolioCoins,
                                 showDetailScreen: $showDetailView,
-                                selectedCoin: $selectedCoin,
                                 showHolidngsColumn: true
                             )
                                 .transition(.move(edge: .trailing))

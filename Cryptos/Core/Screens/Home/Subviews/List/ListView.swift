@@ -9,22 +9,22 @@ import SwiftUI
 
 struct ListView<Content: View>: View {
 
+    @EnvironmentObject var viewModel: HomeViewModel
+
     private let coins: [Coin]
     private let showHolidngsColumn: Bool
     private let footer: Content
+
     @Binding var showDetailScreen: Bool
-    @Binding var selectedCoin: Coin
 
     init(
         coins: [Coin],
         showDetailScreen: Binding<Bool>,
-        selectedCoin: Binding<Coin>,
         showHolidngsColumn: Bool = false,
         @ViewBuilder footer: () -> Content
     ) {
         self.coins = coins
         self._showDetailScreen = showDetailScreen
-        self._selectedCoin = selectedCoin
         self.showHolidngsColumn = showHolidngsColumn
         self.footer = footer()
     }
@@ -32,13 +32,11 @@ struct ListView<Content: View>: View {
     init(
         coins: [Coin],
         showDetailScreen: Binding<Bool>,
-        selectedCoin: Binding<Coin>,
         showHolidngsColumn: Bool = false
     ) where Content == EmptyView {
         self.init(
             coins: coins,
             showDetailScreen: showDetailScreen,
-            selectedCoin: selectedCoin,
             showHolidngsColumn: showHolidngsColumn
         ) {
             EmptyView()
@@ -52,7 +50,7 @@ struct ListView<Content: View>: View {
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        selectedCoin = coin
+                        viewModel.selectedCoin = coin
                         showDetailScreen.toggle()
                     }
             }
@@ -68,7 +66,6 @@ struct ListView<Content: View>: View {
     ListView(
         coins: [Coin.mock],
         showDetailScreen: .constant(true),
-        selectedCoin: .constant(Coin.mock),
         showHolidngsColumn: true) {
         Text("Footer")
     }
