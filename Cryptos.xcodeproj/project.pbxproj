@@ -145,8 +145,7 @@
 			children = (
 				0CBAD3D02C52A7E500F3683D /* Info.plist */,
 				0C7E4C542C3F05290057BD66 /* App */,
-				0C7E4C492C3EE1B60057BD66 /* Domain */,
-				0C7E4C432C3EDCB20057BD66 /* Modules */,
+				0C7E4C492C3EE1B60057BD66 /* Core */,
 				0C7E4C402C3ED4060057BD66 /* Library */,
 				0C7E4C552C3F053C0057BD66 /* Resources */,
 				0C7E4C322C3ECE550057BD66 /* Preview Content */,
@@ -213,14 +212,14 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
-		0C7E4C492C3EE1B60057BD66 /* Domain */ = {
+		0C7E4C492C3EE1B60057BD66 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				0CBAD3D92C53D33C00F3683D /* Core Data */,
 				0C7E4C532C3F05230057BD66 /* Models */,
 				0C7E4C632C416EFE0057BD66 /* API */,
+				0C7E4C432C3EDCB20057BD66 /* Modules */,
 			);
-			path = Domain;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		0C7E4C4A2C3EE1C00057BD66 /* UI Components */ = {
@@ -395,13 +394,6 @@
 				0CBAD3D72C52B6A800F3683D /* NetworkCacheService.swift */,
 			);
 			path = CacheService;
-			sourceTree = "<group>";
-		};
-		0CBAD3D92C53D33C00F3683D /* Core Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
