@@ -14,7 +14,7 @@ final class FetchMarketDataService {
 
     // MARK: - Init
 
-    init(requestManager: RequestManagerProtocol = RequestManager()) {
+    init(requestManager: some RequestManagerProtocol = RequestManager()) {
         self.requestManager = requestManager
     }
 

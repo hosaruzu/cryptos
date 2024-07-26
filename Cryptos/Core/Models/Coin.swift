@@ -7,11 +7,7 @@
 
 import Foundation
 
-struct Coin: Decodable, Identifiable, Equatable {
-    static func == (lhs: Coin, rhs: Coin) -> Bool {
-        lhs.id == rhs.id
-    }
-
+struct Coin: Decodable {
     let id: String
     let symbol: String
     let name: String
@@ -78,6 +74,16 @@ struct Coin: Decodable, Identifiable, Equatable {
 
 struct Sparkline: Decodable {
     let price: [Double]
+}
+
+// MARK: - Identifiable & Equatable
+
+extension Coin: Identifiable {}
+
+extension Coin: Equatable {
+    static func == (lhs: Coin, rhs: Coin) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
 extension Coin {

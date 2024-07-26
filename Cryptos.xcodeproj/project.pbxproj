@@ -175,19 +175,21 @@
 		0C7E4C402C3ED4060057BD66 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				0C7E4C4A2C3EE1C00057BD66 /* UI Components */,
 				0C7E4C3F2C3ED3FF0057BD66 /* Extensions */,
 			);
 			path = Library;
 			sourceTree = "<group>";
 		};
-		0C7E4C432C3EDCB20057BD66 /* Screens */ = {
+		0C7E4C432C3EDCB20057BD66 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0CBAD3CB2C529B4700F3683D /* Settings */,
 				0CBAD3D32C52A98300F3683D /* LaunchView */,
 				0C7E4C442C3EDCBE0057BD66 /* Home */,
 				0CBAD3B32C51340B00F3683D /* Detail */,
 			);
-			path = Screens;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		0C7E4C442C3EDCBE0057BD66 /* Home */ = {
@@ -204,7 +206,6 @@
 		0C7E4C452C3EDCCB0057BD66 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				0CBAD3CB2C529B4700F3683D /* Settings */,
 				0CBAD3AD2C4FDD2500F3683D /* List */,
 				0CBAD3AA2C4ECD0000F3683D /* EditPortfolio */,
 			);
@@ -216,8 +217,7 @@
 			children = (
 				0C7E4C532C3F05230057BD66 /* Models */,
 				0C7E4C632C416EFE0057BD66 /* API */,
-				0C7E4C4A2C3EE1C00057BD66 /* UI Components */,
-				0C7E4C432C3EDCB20057BD66 /* Screens */,
+				0C7E4C432C3EDCB20057BD66 /* Modules */,
 			);
 			path = Core;
 			sourceTree = "<group>";

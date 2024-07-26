@@ -13,14 +13,14 @@ struct DetailView: View {
 
     // MARK: - View model
 
-    @ObservedObject private var viewModel: DetailViewModel
+    @StateObject private var viewModel: DetailViewModel
 
     @State private var showFullDescription = false
 
     // MARK: - Init
 
     init(coin: Coin) {
-        viewModel = DetailViewModel(coin: coin)
+        self._viewModel = StateObject(wrappedValue: DetailViewModel(coin: coin))
     }
 
     // MARK: - Body

@@ -17,7 +17,7 @@ final class APIManager: APIManagerProtocol {
 
     init(
         urlSession: URLSession = .shared,
-        cacheService: NetworkCacheService = NetworkCacheServiceImpl()
+        cacheService: some NetworkCacheService = NetworkCacheServiceImpl()
     ) {
         self.urlSession = urlSession
         self.cacheService = cacheService
@@ -25,7 +25,6 @@ final class APIManager: APIManagerProtocol {
 
     func request(with data: some RequestProtocol) async throws -> Data {
         if let cachedData = cacheService.retrieveCachedData(for: try data.request()) {
-            print("from cache")
             return cachedData
         }
 

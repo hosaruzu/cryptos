@@ -20,6 +20,7 @@ struct ChartView: View {
 
     init(coin: Coin) {
         self.data = coin.sparklineIn7D.price
+
         maxY = data.max() ?? 0
         minY = data.min() ?? 0
 
@@ -51,6 +52,8 @@ struct ChartView: View {
         }
     }
 }
+
+// MARK: - Subviews
 
 private extension ChartView {
     var chartView: some View {

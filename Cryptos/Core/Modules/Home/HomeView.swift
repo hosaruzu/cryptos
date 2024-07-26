@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     // MARK: - View model
-    @ObservedObject var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel
 
     // MARK: - State
 

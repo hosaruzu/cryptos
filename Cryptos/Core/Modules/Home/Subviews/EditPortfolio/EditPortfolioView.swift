@@ -10,7 +10,7 @@ import SwiftUI
 struct EditPortfolioView: View {
     @Environment(\.dismiss)
     var dissmiss
-    @ObservedObject var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel
     @State var selectedCoin: Coin?
     @State var quantityText = ""
     @State var showCheckmark = false

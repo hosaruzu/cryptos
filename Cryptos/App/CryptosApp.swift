@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct CryptosApp: App {
-    @ObservedObject private var homeViewModel = HomeViewModel()
+    @StateObject private var homeViewModel = HomeViewModel()
     @State var showLaunchView = true
 
     init() {
