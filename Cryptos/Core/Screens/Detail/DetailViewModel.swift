@@ -9,17 +9,16 @@ import Foundation
 
 @MainActor
 final class DetailViewModel: ObservableObject {
-
     // MARK: - Properties
 
-    @Published var errorMessage: String = ""
+    @Published var errorMessage = ""
 
     let coin: Coin
     @Published var additionalCoinData: CoinAdditional?
     @Published var overviewStatistics: [Statistic] = []
     @Published var additionalStatistics: [Statistic] = []
 
-    @Published var isLoading: Bool = true
+    @Published var isLoading = true
 
     // MARK: - Dependencies
 

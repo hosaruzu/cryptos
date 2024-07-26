@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SearchBarView: View {
-
     @Binding var searchText: String
     @FocusState private var isFocused: Bool
 
@@ -71,12 +70,8 @@ private extension SearchBarView {
         }
         .transition(
             AnyTransition.asymmetric(
-                insertion:
-                        .opacity.animation(
-                            .easeInOut(duration: 0.2)
-                        ),
-                removal: .opacity.animation(
-                    .easeInOut(duration: 0.1)
+                insertion: .opacity.animation(.easeInOut(duration: 0.2)),
+                removal: .opacity.animation(.easeInOut(duration: 0.1)
                 )
             )
         )
@@ -91,11 +86,7 @@ private extension SearchBarView {
         }
         .transition(
             AnyTransition.asymmetric(
-                insertion:
-                        .opacity.animation(
-                            .easeInOut(duration: 0.3)
-                            .delay(0.1)
-                        ),
+                insertion: .opacity.animation(.easeInOut(duration: 0.3).delay(0.1)),
                 removal: .identity)
         )
     }

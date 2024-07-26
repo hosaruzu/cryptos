@@ -43,7 +43,8 @@ struct Coin: Decodable, Identifiable, Equatable {
         return Coin(
             id: id,
             symbol: symbol,
-            name: name, image: image,
+            name: name,
+            image: image,
             currentPrice: currentPrice,
             marketCap: marketCap,
             marketCapRank: marketCapRank,

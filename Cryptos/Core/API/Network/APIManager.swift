@@ -30,8 +30,9 @@ final class APIManager: APIManagerProtocol {
         }
 
         let (returnData, response) = try await urlSession.data(for: data.request())
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200
+        guard
+            let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode == 200
         else { throw NetworkError.invalidServerResponse((response as? HTTPURLResponse)?.statusCode ?? 99) }
         cacheService.cacheData(
             from: try data.request(),

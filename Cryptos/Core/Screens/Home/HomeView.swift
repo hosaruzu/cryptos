@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct HomeView: View {
-
     // MARK: - View model
     @ObservedObject var viewModel: HomeViewModel
 
     // MARK: - State
 
-    @State private var atPortfolio: Bool = false
-    @State private var showPortfolioView: Bool = false
+    @State private var atPortfolio = false
+    @State private var showPortfolioView = false
     @State private var id = 0
     @State private var refreshID = UUID()
-    @State private var showDetailView: Bool = false
-    @State private var showSettingsView: Bool = false
-    @State private var selectedCoin: Coin = Coin.mock
+    @State private var showDetailView = false
+    @State private var showSettingsView = false
+    @State private var selectedCoin = Coin.mock
 
     // MARK: - Body
 
@@ -28,15 +27,15 @@ struct HomeView: View {
         ZStack(alignment: .top) {
             Color.theme.background
                 .ignoresSafeArea()
-                .sheet(isPresented: $showPortfolioView, content: {
+                .sheet(isPresented: $showPortfolioView) {
                     EditPortfolioView(viewModel: viewModel)
-                        .onDisappear(perform: {
+                        .onDisappear {
                             self.refreshID = UUID()
-                        })
-                })
-                .sheet(isPresented: $showSettingsView, content: {
+                        }
+                }
+                .sheet(isPresented: $showSettingsView) {
                     SettingsView()
-                })
+                }
                 .fullScreenCover(isPresented: $showDetailView) {
                     if let selectedCoin = viewModel.selectedCoin {
                         DetailView(coin: selectedCoin)

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeHeader: View {
-
     @Binding var isChanged: Bool
     @Binding var showPortfolioView: Bool
     @Binding var showSettingsView: Bool

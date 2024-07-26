@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct InfoVGrid: View {
-
     let statistics: [Statistic]
 
     private let columns: [GridItem] = [

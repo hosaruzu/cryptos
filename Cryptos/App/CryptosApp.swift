@@ -9,9 +9,8 @@ import SwiftUI
 
 @main
 struct CryptosApp: App {
-
     @ObservedObject private var homeViewModel = HomeViewModel()
-    @State var showLaunchView: Bool = true
+    @State var showLaunchView = true
 
     init() {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
@@ -20,14 +19,13 @@ struct CryptosApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-
                 NavigationView {
                     HomeView(viewModel: homeViewModel)
                 }
                 ZStack {
-                if showLaunchView {
+                    if showLaunchView {
                         LaunchView(showLaunchView: $showLaunchView)
-                        .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.3)))
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.3)))
                     }
                 }
                 .zIndex(2.0)

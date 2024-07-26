@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LaunchView: View {
-
     @State var animate = false
     @Binding var showLaunchView: Bool
 

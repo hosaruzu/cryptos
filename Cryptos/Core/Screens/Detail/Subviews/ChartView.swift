@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ChartView: View {
-
     private let data: [Double]
     private let startingDate: Date
     private let endingDate: Date

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeStatisticsView: View {
-
     let statistics: [Statistic]
     @Binding var atPortfolio: Bool
 

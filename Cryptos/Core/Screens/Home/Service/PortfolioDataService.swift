@@ -8,7 +8,6 @@
 import CoreData
 
 final class PortfolioDataService {
-
     private let container: NSPersistentContainer
     private let containerName = "PortfolioContainer"
     private let entityName = "PortfolioEntity"
@@ -26,7 +25,6 @@ final class PortfolioDataService {
                 print("Error loading Core Data \(error)")
             }
         }
-
     }
 
     // MARK: - Public
@@ -79,7 +77,7 @@ final class PortfolioDataService {
 
     private func save() {
         do {
-           try container.viewContext.save()
+            try container.viewContext.save()
         } catch {
             print("Error saving to Core Data: \(error)")
         }

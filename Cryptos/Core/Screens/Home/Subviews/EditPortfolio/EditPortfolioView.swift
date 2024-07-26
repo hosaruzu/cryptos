@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct EditPortfolioView: View {
-
-    @Environment(\.dismiss) var dissmiss
+    @Environment(\.dismiss)
+    var dissmiss
     @ObservedObject var viewModel: HomeViewModel
     @State var selectedCoin: Coin?
-    @State var quantityText: String = ""
-    @State var showCheckmark: Bool = false
+    @State var quantityText = ""
+    @State var showCheckmark = false
 
     var body: some View {
         NavigationView {
@@ -50,9 +50,9 @@ struct EditPortfolioView: View {
                         }
                     }
                     .opacity(selectedCoin != nil
-                             && selectedCoin?.currentHoldings != Double(quantityText)
-                             ? 1.0
-                             : 0.0)
+                        && selectedCoin?.currentHoldings != Double(quantityText)
+                        ? 1.0
+                        : 0.0)
                 }
             }
         }
@@ -128,16 +128,18 @@ private extension EditPortfolioView {
 
 private extension EditPortfolioView {
     func getCurrentPrice() -> String {
-        guard let quantity = Double(quantityText),
-              let currentPrice = selectedCoin?.currentPrice
+        guard
+            let quantity = Double(quantityText),
+            let currentPrice = selectedCoin?.currentPrice
         else { return "No data"}
         let result = currentPrice * quantity
         return result.asCurrencyWith6Decimals
     }
 
     func saveButtonTapped() {
-        guard let quantity = Double(quantityText),
-              let selectedCoin
+        guard
+            let quantity = Double(quantityText),
+            let selectedCoin
         else { return }
         viewModel.updatePortfolio(selectedCoin, amount: quantity)
 

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ImageView: View {
-
     var urlString: String
     var width: CGFloat = 30
     var height: CGFloat = 30

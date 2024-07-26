@@ -8,7 +8,6 @@
 import Foundation
 
 final class SettingsViewModel: ObservableObject {
-
     @Published var coinGeckoURL = URL(string: "https://www.coingecko.com")
     @Published var githubURL = URL(string: "https://github.com/hosaruzu/cryptos")
     @Published var telegramURL = URL(string: "https://t.me/aatebenkov")

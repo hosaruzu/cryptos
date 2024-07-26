@@ -13,7 +13,6 @@ protocol NetworkCacheService {
 }
 
 final class NetworkCacheServiceImpl: NetworkCacheService {
-
     private let userDefaults: UserDefaults
     private let urlCache: URLCache
 

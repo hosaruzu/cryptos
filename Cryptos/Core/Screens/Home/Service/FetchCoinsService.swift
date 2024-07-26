@@ -8,7 +8,6 @@
 import Foundation
 
 final class FetchCoinsService {
-
     // MARK: - Dependencies
 
     private let requestManager: RequestManagerProtocol

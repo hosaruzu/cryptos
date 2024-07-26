@@ -8,26 +8,25 @@
 import SwiftUI
 
 struct CoinRowView: View {
-
     let coin: Coin
     let showHoldingsColumn: Bool
 
     var body: some View {
-            HStack(spacing: 0) {
-                leadingColumn
+        HStack(spacing: 0) {
+            leadingColumn
 
-                Spacer()
+            Spacer()
 
-                if showHoldingsColumn {
-                    centerColumn
-                }
-
-                trailingColumn
-                    .frame(
-                        width: UIScreen.main.bounds.width / 3.5,
-                        alignment: .trailing)
+            if showHoldingsColumn {
+                centerColumn
             }
-            .font(.subheadline)
+
+            trailingColumn
+                .frame(
+                    width: UIScreen.main.bounds.width / 3.5,
+                    alignment: .trailing)
+        }
+        .font(.subheadline)
     }
 }
 

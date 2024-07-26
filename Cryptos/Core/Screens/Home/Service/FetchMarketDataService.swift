@@ -8,7 +8,6 @@
 import Foundation
 
 final class FetchMarketDataService {
-
     // MARK: - Dependencies
 
     private let requestManager: RequestManagerProtocol

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.dismiss)
+    private var dissmiss
 
-    @Environment(\.dismiss) private var dissmiss
     @StateObject private var viewModel = SettingsViewModel()
 
     var body: some View {
@@ -21,7 +22,9 @@ struct SettingsView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 30, height: 30)
-                        Link("CoinGecko API website", destination: viewModel.coinGeckoURL!)
+                        if let coinGecko = viewModel.coinGeckoURL {
+                            Link("CoinGecko API website", destination: coinGecko)
+                        }
                     }
                     .padding(4)
 
@@ -30,7 +33,9 @@ struct SettingsView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 30, height: 30)
-                        Link("App repository", destination: viewModel.githubURL!)
+                        if let githubURL = viewModel.githubURL {
+                            Link("App repository", destination: githubURL)
+                        }
                     }
                     .padding(4)
                 }
@@ -41,7 +46,9 @@ struct SettingsView: View {
                             .scaledToFit()
                             .frame(width: 30, height: 30)
                             .foregroundStyle(.blue)
-                        Link("Message me in Telegram", destination: viewModel.telegramURL!)
+                        if let telegramURL = viewModel.telegramURL {
+                            Link("Message me in Telegram", destination: telegramURL)
+                        }
                     }
                     .padding(4)
 
@@ -51,7 +58,9 @@ struct SettingsView: View {
                             .scaledToFit()
                             .frame(width: 30, height: 30)
                             .foregroundStyle(.blue)
-                        Link("Mail me", destination: viewModel.mailURL!)
+                        if let mailURL = viewModel.mailURL {
+                            Link("Mail me", destination: mailURL)
+                        }
                     }
                     .padding(4)
                 }

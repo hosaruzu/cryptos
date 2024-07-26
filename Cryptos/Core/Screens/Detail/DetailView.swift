@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct DetailView: View {
-
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismiss)
+    private var dismiss
 
     // MARK: - View model
 
     @ObservedObject private var viewModel: DetailViewModel
 
-    @State private var showFullDescription: Bool = false
+    @State private var showFullDescription = false
 
     // MARK: - Init
 
@@ -60,7 +60,6 @@ struct DetailView: View {
                     }
                     .padding()
                 }
-
             }
             .task {
                 await viewModel.onLoad()
@@ -81,6 +80,8 @@ struct DetailView: View {
     }
 }
 
+// MARK: - Subviews
+
 private extension DetailView {
     var dismissButton: some View {
         Button {
@@ -99,8 +100,9 @@ private extension DetailView {
 
     var descriptionView: some View {
         VStack {
-            if let coinDescription =  viewModel.additionalCoinData?.readableDescription,
-               !coinDescription.isEmpty {
+            if
+                let coinDescription = viewModel.additionalCoinData?.readableDescription,
+                !coinDescription.isEmpty {
                 VStack(alignment: .leading) {
                     Text(coinDescription)
                         .lineLimit(showFullDescription ? nil : 3)
@@ -116,7 +118,6 @@ private extension DetailView {
                             .padding(.vertical, 4)
                     }
                 }
-
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
@@ -125,13 +126,13 @@ private extension DetailView {
     var linksView: some View {
         VStack {
             if let website = viewModel.additionalCoinData?.links.homepage[0],
-               let url = URL(string: website) {
+                let url = URL(string: website) {
                 Link(destination: url) {
                     Text("\(viewModel.coin.name) website")
                 }
             }
             if let website = viewModel.additionalCoinData?.links.subredditURL,
-               let url = URL(string: website) {
+                let url = URL(string: website) {
                 Link(destination: url) {
                     Text("Reddit \(viewModel.coin.name) page")
                 }

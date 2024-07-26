@@ -15,7 +15,6 @@ enum CoinRequest: RequestProtocol {
     }
 
     var queryParams: [String: String?] {
-
         switch self {
         case .getCoins(let page):
             [

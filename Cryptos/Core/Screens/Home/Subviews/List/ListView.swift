@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ListView<Content: View>: View {
-
     @EnvironmentObject var viewModel: HomeViewModel
 
     private let coins: [Coin]
@@ -59,7 +58,6 @@ struct ListView<Content: View>: View {
         }
         .listStyle(.plain)
     }
-
 }
 
 #Preview {
@@ -67,6 +65,6 @@ struct ListView<Content: View>: View {
         coins: [Coin.mock],
         showDetailScreen: .constant(true),
         showHolidngsColumn: true) {
-        Text("Footer")
+            Text("Footer")
     }
 }

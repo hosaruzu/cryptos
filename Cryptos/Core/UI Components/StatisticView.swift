@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StatisticView: View {
-
     let statistic: Statistic
 
     var body: some View {

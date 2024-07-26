@@ -9,7 +9,6 @@ import Foundation
 
 @MainActor
 final class HomeViewModel: ObservableObject {
-
     // MARK: - Puplic properties
 
     /// Coins: initial list & filtered list
@@ -23,7 +22,7 @@ final class HomeViewModel: ObservableObject {
     @Published var statistics: [Statistic] = []
 
     /// Current loading state
-    @Published var isLoading: Bool = true
+    @Published var isLoading = true
 
     /// Error message
     @Published var errorMessage: String = ""
@@ -107,7 +106,7 @@ final class HomeViewModel: ObservableObject {
 
     // MARK: - Market data service
 
-   private func fetchMarketData() async {
+    private func fetchMarketData() async {
         do {
             let marketData = try await marketDataService.fetchMarketData()
             statistics = createStatistics(with: marketData)
@@ -132,7 +131,7 @@ final class HomeViewModel: ObservableObject {
 
     // MARK: - Portfolio data service
 
-   private func reloadPortfolio(with coins: [Coin]) {
+    private func reloadPortfolio(with coins: [Coin]) {
         let entities = portfolioDataService.getPortfolio()
         portfolioCoins = entities.compactMap { entity in
             if let coin = coins.first(where: { $0.id == entity.coinID }) {
@@ -140,7 +139,7 @@ final class HomeViewModel: ObservableObject {
             }
             return nil
         }
-   }
+    }
 
     private func updatePortfolioStats() {
         let previousValue = portfolioCoins

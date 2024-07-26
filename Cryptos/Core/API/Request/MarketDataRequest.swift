@@ -8,7 +8,6 @@
 import Foundation
 
 enum MarketDataRequest: RequestProtocol {
-
     case getMarketData
 
     var path: String {
